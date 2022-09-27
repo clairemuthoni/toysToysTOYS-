@@ -277,8 +277,8 @@ footer {
     margin-bottom: 20px;
 }
 .product:hover{
-    border: none;
-    box shadow:2px 2px 4px rgba(0,0,0,0.2) ;
+    /* border: none; */
+    /* box-shadow:2px 2px 4px rgba(0,0,0,0.2) ; */
     /*transform: scale(1.01);*/
 }
 .product >img{
@@ -346,13 +346,10 @@ footer {
     text-align: center;
     height: 40px;
     line-height: 40px;
-    background-color: tomato;
     color: white;
     text-decoration: none;
 }
-.cart-total a:hover{
-    background-color: red;
-}
+
 @media screen and (max-width: 500px){
     .remove{
         display: none;
