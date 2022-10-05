@@ -255,6 +255,7 @@ h1{
 }
 #spanss{
     position:relative;
+    width: 800px;
     left:300px;
     bottom:100px;
     border:solid;
