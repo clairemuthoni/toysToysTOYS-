@@ -37,13 +37,59 @@
   <br>
   <br>
 
-  <div>
+  <div class="back-image slideshow-container">
+
+    <div class="mySlides fade">
+      <!-- <div class="numbertext"></div> -->
+      <img src="..\..\assets\images\Image 1.png" style="width:100%">
+      <p class="foreground-text">Toys for your loved ones</p>
+      <a class="button-1" href="..\products_list\product_list.html">SHOP NOW</a>
+    </div>
+
+    <div class="mySlides fade">
+      <!-- <div class="numbertext"></div> -->
+      <img src="..\..\assets\images\Image 2.png" style="width:100%">
+      <p class="foreground-text">Get toys for play and for learning </p>
+      <a class="button-1" href="..\products_list\product_list.html">SHOP NOW</a>
+
+    </div>
+
+  </div>
+  <br>
+
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+      setTimeout(showSlides, 5000);
+    }
+  </script>
+  <!-- <div>
     <img class="back-image" src="..\..\assets\images\Image 1.png" width="100%" height="35%">
     <p class="foreground-text">Toys for your loved ones</p>
     <a class="button-1" href="..\products_list\product_list.html">SHOP NOW</a>
 
 
-  </div>
+  </div> -->
 
   <br>
 
@@ -52,46 +98,46 @@
 
   <div class="horizontal-list">
     <a href="..\product\product.html">
-        <div class="product-card">
-            <img src="..\..\assets\images\Product Image.png" alt="image">
-            <p class="product-name">LEGO Brick Box</p>
-            <p class="supplier-name">Spark Retailers</p>
-            <p class="product-price">Ksh 1350</p>
-        </div>
+      <div class="product-card">
+        <img src="..\..\assets\images\Product Image.png" alt="image">
+        <p class="product-name">LEGO Brick Box</p>
+        <p class="supplier-name">Spark Retailers</p>
+        <p class="product-price">Ksh 1350</p>
+      </div>
     </a>
     <a href="..\product\product.html">
-        <div class="product-card">
-            <img src="..\..\assets\images\Product Image.png" alt="image">
-            <p class="product-name">LEGO Brick Box</p>
-            <p class="supplier-name">Spark Retailers</p>
-            <p class="product-price">Ksh 1350</p>
-        </div>
+      <div class="product-card">
+        <img src="..\..\assets\images\Product Image.png" alt="image">
+        <p class="product-name">LEGO Brick Box</p>
+        <p class="supplier-name">Spark Retailers</p>
+        <p class="product-price">Ksh 1350</p>
+      </div>
     </a>
     <a href="..\product\product.html">
-        <div class="product-card">
-            <img src="..\..\assets\images\Product Image.png" alt="image">
-            <p class="product-name">LEGO Brick Box</p>
-            <p class="supplier-name">Spark Retailers</p>
-            <p class="product-price">Ksh 1350</p>
-        </div>
+      <div class="product-card">
+        <img src="..\..\assets\images\Product Image.png" alt="image">
+        <p class="product-name">LEGO Brick Box</p>
+        <p class="supplier-name">Spark Retailers</p>
+        <p class="product-price">Ksh 1350</p>
+      </div>
     </a>
     <a href="..\product\product.html">
-        <div class="product-card">
-            <img src="..\..\assets\images\Product Image.png" alt="image">
-            <p class="product-name">LEGO Brick Box</p>
-            <p class="supplier-name">Spark Retailers</p>
-            <p class="product-price">Ksh 1350</p>
-        </div>
+      <div class="product-card">
+        <img src="..\..\assets\images\Product Image.png" alt="image">
+        <p class="product-name">LEGO Brick Box</p>
+        <p class="supplier-name">Spark Retailers</p>
+        <p class="product-price">Ksh 1350</p>
+      </div>
     </a>
     <a href="..\product\product.html">
-        <div class="product-card">
-            <img src="..\..\assets\images\Product Image.png" alt="image">
-            <p class="product-name">LEGO Brick Box</p>
-            <p class="supplier-name">Spark Retailers</p>
-            <p class="product-price">Ksh 1350</p>
-        </div>
+      <div class="product-card">
+        <img src="..\..\assets\images\Product Image.png" alt="image">
+        <p class="product-name">LEGO Brick Box</p>
+        <p class="supplier-name">Spark Retailers</p>
+        <p class="product-price">Ksh 1350</p>
+      </div>
     </a>
-</div>
+  </div>
 
   <!-- <div class="row">
     <div class="column">
@@ -133,46 +179,46 @@
 
   <div class="horizontal-list">
     <a href="..\product\product.html">
-        <div class="product-card">
-            <img src="..\..\assets\images\Product Image.png" alt="image">
-            <p class="product-name">LEGO Brick Box</p>
-            <p class="supplier-name">Spark Retailers</p>
-            <p class="product-price">Ksh 1350</p>
-        </div>
+      <div class="product-card">
+        <img src="..\..\assets\images\Product Image.png" alt="image">
+        <p class="product-name">LEGO Brick Box</p>
+        <p class="supplier-name">Spark Retailers</p>
+        <p class="product-price">Ksh 1350</p>
+      </div>
     </a>
     <a href="..\product\product.html">
-        <div class="product-card">
-            <img src="..\..\assets\images\Product Image.png" alt="image">
-            <p class="product-name">LEGO Brick Box</p>
-            <p class="supplier-name">Spark Retailers</p>
-            <p class="product-price">Ksh 1350</p>
-        </div>
+      <div class="product-card">
+        <img src="..\..\assets\images\Product Image.png" alt="image">
+        <p class="product-name">LEGO Brick Box</p>
+        <p class="supplier-name">Spark Retailers</p>
+        <p class="product-price">Ksh 1350</p>
+      </div>
     </a>
     <a href="..\product\product.html">
-        <div class="product-card">
-            <img src="..\..\assets\images\Product Image.png" alt="image">
-            <p class="product-name">LEGO Brick Box</p>
-            <p class="supplier-name">Spark Retailers</p>
-            <p class="product-price">Ksh 1350</p>
-        </div>
+      <div class="product-card">
+        <img src="..\..\assets\images\Product Image.png" alt="image">
+        <p class="product-name">LEGO Brick Box</p>
+        <p class="supplier-name">Spark Retailers</p>
+        <p class="product-price">Ksh 1350</p>
+      </div>
     </a>
     <a href="..\product\product.html">
-        <div class="product-card">
-            <img src="..\..\assets\images\Product Image.png" alt="image">
-            <p class="product-name">LEGO Brick Box</p>
-            <p class="supplier-name">Spark Retailers</p>
-            <p class="product-price">Ksh 1350</p>
-        </div>
+      <div class="product-card">
+        <img src="..\..\assets\images\Product Image.png" alt="image">
+        <p class="product-name">LEGO Brick Box</p>
+        <p class="supplier-name">Spark Retailers</p>
+        <p class="product-price">Ksh 1350</p>
+      </div>
     </a>
     <a href="..\product\product.html">
-        <div class="product-card">
-            <img src="..\..\assets\images\Product Image.png" alt="image">
-            <p class="product-name">LEGO Brick Box</p>
-            <p class="supplier-name">Spark Retailers</p>
-            <p class="product-price">Ksh 1350</p>
-        </div>
+      <div class="product-card">
+        <img src="..\..\assets\images\Product Image.png" alt="image">
+        <p class="product-name">LEGO Brick Box</p>
+        <p class="supplier-name">Spark Retailers</p>
+        <p class="product-price">Ksh 1350</p>
+      </div>
     </a>
-</div>
+  </div>
 
   <!-- <br>
   <div class="row">
