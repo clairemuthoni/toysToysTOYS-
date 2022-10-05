@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="buyeraccount.css">
-    <title>Toys</title>
+    <link rel="stylesheet" href="buyer_info.css">
+    <title>Toys - Buyer details</title>
 </head>
+
 <body>
-    <!-- The Header for the Webpage -->
     <header>
         <a href="..\homepage\home.html" class="logo-text">TOYS</a>
         <div class="nav-search-bar">
-            <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search" id="search">
+            <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search"
+                id="search">
             <a href=""><img class="nav-search-button" src="..\..\assets\icons\search-filled.png" alt="search"></a>
         </div>
         <div class="nav-buttons">
@@ -23,53 +22,67 @@
                     <p>Hi, User</p>
                 </div>
             </a>
-        <a href="..\cart\cart.html"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+            <a href="..\cart\cart.html"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
         </div>
     </header>
+
     <img id="profile" src="..\..\assets\images\facebook_no_profile_pic2-jpg.gif" width="300" height="450">
+
+    <span id="trial">Welcome, customer ! </span>
+
     <form action="buyer_info.html" method="GET">
 
         <div id="content">
-            <h1><b>Personal info</b></h1>
+            <h1>Personal info</h1>
             <label for="uname">Username</label><br>
+            <span>jmemia</span><br>
             <!--
                 <input type="text" placeholder="Username" name="uname">-->
             <!-- Get a photo of an pen -->
             <!--<img src=""    ><br>-->
 
-            <h1><b>Password</b></h1>
-            <span>Create a password or modify your existing one.</span><br>
-            <label for="emails">**********************</label><br>
+            <h1>Contact info</h1>
+            <label for="emails">Email Adress</label><br>
+            <span>U*****e@gmail.com</span><br>
             <!--
                   <input type="email" name="emails">-->
             <!-- Get a photo of an pen -->
             <!--<img src=""    ><br>-->
-
-            <h1>Secret questions</h1>
-            <span>Give yourself another secure way<br> to recover your account.</span>
-            <label for="pnumber">.</label><br>
+            <label for="pnumber">Phone number</label><br>
+            <span>+254XXXXXXXX01</span><br>
             <!--
                 <input type="number" name="pnumber">-->
             <!-- Get a photo of an pen -->
             <!--<img src=""    ><br>-->
 
+            <label for="add_name">Owner name, address</label><br>
+            <span>John Memia</span><br>
+            <span>672537<br>Nairobi 00600 <br>KE</span><br>
+
+            <!--
+                <input type="text" name="add_name">-->
+            <!-- Get a photo of an pen -->
+            <!--<img src=""    ><br>-->
+
             <div id="buttons">
                 <input class="button-1" id="save" type="submit" value="Save info"><br>
-                <a href="account_card_info\buyeraccount.html"><button class="button-1" id="Payment">Payment Info</button></a><br>
-                <a href="buyer_info\buyer_info.html"><button class="button-1" id="buyer_info">Personal Info</button></a>
+                <a href="payment_info.html"><button class="button-1" id="Payment">Payment Info</button></a>
             </div>
+
         </div>
     </form>
 
-    <!-- The Footer for the Webpage -->
-    <!-- TIP: You can move it lower by changing the top value in the css. (Footer section) -->
+
     <footer>
         <div class="footer-list-1">
             <a href="..\homepage\home.html" class="logo-text">TOYS</a>
             <div class="footer-social-media-links">
-                <a href="https://www.facebook.com/"><img class="icon-facebook" src="..\..\assets\icons\facebook.png" alt="facebook"></a>
-                <a href="https://www.instagram.com/"><img class="icon-instagram" src="..\..\assets\icons\instagram.png" alt="instagram"></a>
-                <a href="https://www.twitter.com/"><img class="icon-twitter" src="..\..\assets\icons\twitter.png" alt="twitter"></a>
+                <a href="https://www.facebook.com/"><img class="icon-facebook" src="..\..\assets\icons\facebook.png"
+                        alt="facebook"></a>
+                <a href="https://www.instagram.com/"><img class="icon-instagram" src="..\..\assets\icons\instagram.png"
+                        alt="instagram"></a>
+                <a href="https://www.twitter.com/"><img class="icon-twitter" src="..\..\assets\icons\twitter.png"
+                        alt="twitter"></a>
             </div>
             <p class="footer-copyright">©2022. Toys</p>
         </div>
@@ -90,5 +103,19 @@
             <a href="">OUTLET</a>
         </div>
     </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
+
 </html>

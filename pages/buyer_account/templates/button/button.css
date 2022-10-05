@@ -1,0 +1,73 @@
+
+
+/* 
+    Button 1 means that the button is filled with a primary color(red) by default
+    Button 2 means that the button is outlined with red, but filled with white
+
+    Pick whichever looks cooler for you.
+*/
+
+/* Button 1 CSS */
+
+.button-1 {
+    /* ---Change the button's position--- */
+
+    /* position: absolute; */
+    /* top: ; */
+    /* left: ; */
+    /* right: ; */
+
+    text-decoration: none;
+
+    padding: 5px 15px;
+
+    border-radius: 15px;
+    background-color: #DF2935;
+    border: 1px solid #DF2935;
+    color: white;
+    transition-duration: 0.2s;
+}
+
+.button-1:hover {
+    /* font-weight: bold; */
+    color: #DF2935;
+    background-color: white;
+    border: 1px solid #DF2935;
+    box-shadow: 1px 1px 8px #DF2935;
+    text-shadow: 0px 0px 0px;
+}
+
+
+
+
+/* Button 2 CSS */
+
+.button-2 {
+
+    /* ---Change the button's position--- */
+
+    /* position: absolute; */
+    /* top: ; */
+    /* left: ; */
+    /* right: ; */
+
+    text-decoration: none;
+
+    padding: 5px 15px;
+
+    border-radius: 15px;
+    color: #DF2935;
+    background-color: white;
+    border: 1px solid #DF2935;
+    transition-duration: 0.2s;
+}
+
+.button-2:hover {
+    /* font-weight: bold; */
+    border-radius: 15px;
+    background-color: #DF2935;
+    color: white;
+    border: 1px solid #DF2935;
+    box-shadow: 1px 1px 8px #DF2935;
+    text-shadow: 0px 0px 0px;
+}
