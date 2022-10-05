@@ -359,11 +359,10 @@ footer {
 }
 
 .image-2 {
-  position: absolute;
-  /* top: -200px; */
+  position: fixed;
   left: 0%;
+  z-index: 10;
   opacity: 0;
-  /* transition: opacity 1s; */
   transition-duration: 0.2s;
 }
 
