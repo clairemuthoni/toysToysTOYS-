@@ -36,7 +36,7 @@ CREATE TABLE `categories` (
 
 CREATE TABLE `product_images` (
     `image_id` int(10),
-    `image_url` TEXT NOT NULL,
+    `image_url` TEXT NOT NULL
 );
 
 CREATE TABLE `products` (
@@ -50,7 +50,6 @@ CREATE TABLE `products` (
     `created_at` datetime NOT NULL,
     `updated_at` datetime DEFAULT NULL,
     `seller_id` int(10) NOT NULL,
-    FOREIGN KEY (image_id) REFERENCES product_images(image_id),
     FOREIGN KEY (seller_id) REFERENCES sellers(seller_id),
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
