@@ -1,14 +1,9 @@
-CREATE TABLE `card_details` (
-  `card_number` int(16) PRIMARY KEY,
-  `security_number` int(10) NOT NULL,
-  `expiry_date` datetime NOT NULL
-);
-CREATE TABLE `roles` (
+CREATE TABLE IF NOT EXISTS `roles` (
   `role_id` int(10) PRIMARY KEY AUTO_INCREMENT,
   `role_name` tinytext NOT NULL
 );
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(10) PRIMARY KEY AUTO_INCREMENT,
   `role_id` int(10) NOT NULL,
   `first_name` tinytext NOT NULL,
@@ -16,32 +11,38 @@ CREATE TABLE `users` (
   `email` varchar(30) NOT NULL,
   `address` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `card_number` int(16) NOT NULL,
-  FOREIGN KEY (card_number) REFERENCES card_details(card_number),
   FOREIGN KEY (role_id) REFERENCES roles(role_id)
 );
 
-CREATE TABLE `sellers` (
+CREATE TABLE IF NOT EXISTS `card_details` (
+  `user_id` int(10) PRIMARY KEY,
+  `card_number` int(16) NOT NULL,
+  `security_number` int(10) NOT NULL,
+  `expiry_date` datetime NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS `sellers` (
     `seller_id` int(10) PRIMARY KEY AUTO_INCREMENT,
     `user_id` int(10) NOT NULL,
     `company_name` tinytext NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE `categories` (
+CREATE TABLE IF NOT EXISTS `categories` (
     `category_id` int(10) PRIMARY KEY AUTO_INCREMENT,
     `category_name` tinytext NOT NULL,
     `category_description` tinytext NOT NULL
 );
 
-CREATE TABLE `product_images` (
+CREATE TABLE IF NOT EXISTS `product_images` (
     `image_id` int(10),
     `image_url` TEXT NOT NULL
 );
 
-CREATE TABLE `products` (
+CREATE TABLE IF NOT EXISTS `products` (
     `product_id` int(10) PRIMARY KEY AUTO_INCREMENT,
-    `category_id` int(10) NOT NULL,
+    `category_id` int(10) DEFAULT NULL,
     `product_name` tinytext NOT NULL,
     `product_description` TEXT NOT NULL,
     `image_id` int(10),
@@ -49,12 +50,12 @@ CREATE TABLE `products` (
     `available_quantity` int(10) NOT NULL,
     `created_at` datetime NOT NULL,
     `updated_at` datetime DEFAULT NULL,
-    `seller_id` int(10) NOT NULL,
+    `seller_id` int(10),
     FOREIGN KEY (seller_id) REFERENCES sellers(seller_id),
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
 
-CREATE TABLE `orders` (
+CREATE TABLE IF NOT EXISTS `orders` (
   `order_id` int(10) PRIMARY KEY AUTO_INCREMENT,
   `user_id` int(10) NOT NULL,
   `payment_status` enum('Not Paid ','Paid')  NOT NULL,
@@ -66,7 +67,7 @@ CREATE TABLE `orders` (
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE `orderdetails` (
+CREATE TABLE IF NOT EXISTS `orderdetails` (
   `orderdetails_id` int(10) PRIMARY KEY AUTO_INCREMENT,
   `order_id` int(10) NOT NULL,
   `product_id` int(10) NOT NULL,
