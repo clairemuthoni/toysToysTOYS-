@@ -13,32 +13,43 @@
             </div>
             <div class="nav-buttons">
                 <a href=""><img class="nav-link help-icon" src="..\..\assets\icons\help.png" alt="help"></a>
-                <a href="">
+                <a href="..\login\login.php">
                     <div class="nav-account">
-                        <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
-                        <p>Hi, User</p>
+                      <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
+                      <p>
+                        <?php
+                        session_start();
+                          if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+                            echo "Hi, ".$_SESSION['first_name'];
+                         }
+                         else {
+                          echo "Login";
+                         }
+                        ?>
+                      </p>
                     </div>
-                </a>
-            <a href="..\cart\cart.html"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+                  </a>
+            <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
             </div>
         </header>
         <div class="form">
-        <form>
+        <form action="process_add_product.php" method="POST" enctype="multipart/form-data">
 <p class="add">ADD PRODUCT</p>
         <div class="pname">
-            <label for="pname"> Name:</label>
+            <label for="product_name"> Name:</label>
             <input class="textfield" type="type" name="pname">
         </div>
         <div class="image">
-            <label for="image"> image: </label>
-            <input class="textfield" type="type" name="image">
+            <label for="product_image"> image: </label>
+            <input class="textfield" type="file" name="product_image_1">
+            <input class="textfield" type="file" name="product_image_2">
         </div>
         <div class="description">
-            <label for="Description "> Description: </label>
+            <label for="product_description "> Description: </label>
             <input class="textfield" type="type" name="Description">
         </div>
         <div class="quantity">
-            <label for="Quantity"> Quantity: </label>
+            <label for="available_quantity"> Quantity: </label>
             <input class="textfield" type="type" name="Quantity">
         </div>
         <div class="category">
@@ -46,10 +57,10 @@
             <input class="textfield" type="type" name="Category">
         </div>
         <div class="price">
-            <label for="Price"> Price: </label>
+            <label for="product_price"> Price: </label>
             <input class="textfield" type="type" name="Price">
         </div>
-        <input class="button-1" type="submit" value="ADD PRODUCT">
+        <input class="button-1" type="submit" name="submit2" value="ADD PRODUCT">
         </form>
     </div>
         <footer>

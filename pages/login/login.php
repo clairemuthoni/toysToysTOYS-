@@ -12,7 +12,7 @@
 <body>
     <!-- The Header for the Webpage -->
     <header>
-        <a href="" class="logo-text">TOYS</a>
+        <a href="..\homepage\home.html" class="logo-text">TOYS</a>
         <div class="nav-search-bar">
             <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search"
                 id="search">
@@ -26,51 +26,31 @@
                     <p>Hi, User</p>
                 </div>
             </a>
-            <a href=""><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+            <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
         </div>
     </header>
+
+
+
     <main>
         <p>.</p>
-        <img class="dp" src="../../assets/images/dp.png" alt="">
-        <div class="mainn">
-
-            <h3 class="info">Personal info</h3>
-            <input type="text" class="inputinfo textfield" name="uname" id="uname" placeholder="Username"> <img
-                class="edit" src="../../assets/images/edit.jpg" alt="Edit"><br>
-            <h3 class="info">Add credit or debit card</h3>
-            <input class="textfield" type="text" name="cardno" id="card no" placeholder="Card Number"><br><br>
-            <input class="textfield" type="text" name="expiry" id="expiry" placeholder="Expiration Date"> <input
-                type="text" class="inputinfo textfield" name="cw" id="cw" placeholder="CW"><br><br>
-            <input class="textfield" type="text" name="fname" id="fname" placeholder="First Name"> <input type="text"
-                class="inputinfo textfield" name="lname" id="lname" placeholder="Last Name">
-            <h3 class="info">Billing address</h3>
-            <textarea class="inputinfo" name="address" id="address"
-                placeholder="John Memia, 672537, Nairobi 00600, Ke"></textarea>
-            <a href="">Edit</a><br>
-
+        <div class="login">
+            <h1 class="logintitle">Login</h1>
+            <form action="process-login.php" method="POST">
+                <input type="text" id="email" name="email" placeholder="Email" class="textfield" required><br><br>
+                <input type="password" id="pass" name="pass" placeholder="Password" class="textfield" required><br><br>
+                <a href="..\register\register.html">Create an Account</a><br><br>
+                <input class="button-1" type="submit" value="Login">
+            </form>
         </div>
-        <div class="buyerbuttons">
-            <a href=""><button class="buyerbutton1">Personal Info</button></a>
-            <a href=""><button class="buyerbutton2">Sign in and Security</button></a>
-            <a href=""><button class="buyerbutton3">Payment Info</button></a>
-        </div>
-        <div class="secure">
-            <p>Secure and Private</p><img class="lockimage" src="../../assets/images/lock.png" alt="lock">
-            <!-- <a href=""><button class="confirmbutton">CONFIRM</button></a> -->
-            <a class="button-1" href="">CONFIRM</a>
-        </div>
-
-
     </main>
-
-
 
 
     <!-- The Footer for the Webpage -->
     <!-- TIP: You can move it lower by changing the top value in the css. (Footer section) -->
     <footer>
         <div class="footer-list-1">
-            <a href="" class="logo-text">TOYS</a>
+            <a href="..\homepage\home.html" class="logo-text">TOYS</a>
             <div class="footer-social-media-links">
                 <a href="https://www.facebook.com/"><img class="icon-facebook" src="..\..\assets\icons\facebook.png"
                         alt="facebook"></a>

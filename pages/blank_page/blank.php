@@ -17,13 +17,23 @@
         </div>
         <div class="nav-buttons">
             <a href=""><img class="nav-link help-icon" src="..\..\assets\icons\help.png" alt="help"></a>
-            <a href="">
+            <a href="..\login\login.php">
                 <div class="nav-account">
-                    <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
-                    <p>Hi, User</p>
+                  <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
+                  <p>
+                    <?php
+                    session_start();
+                      if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+                        echo "Hi, ".$_SESSION['first_name'];
+                     }
+                     else {
+                      echo "Login";
+                     }
+                    ?>
+                  </p>
                 </div>
-            </a>
-        <a href="..\cart\cart.html"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+              </a>
+        <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
         </div>
     </header>
 
@@ -31,23 +41,9 @@
 
 
     <!-- Add your page specific code here -->
-    <form action="" method="post">
-    <div class="form">
-  
-    <p class="Register"> Register</p>
-    
-            <input class="textfield fname" type="text" placeholder="First Name" name="fname" id="fname">
-       
-            <input class="textfield lname" type="text" placeholder="Last name" name="lname" id="lname">
-       
-            <input class="textfield email" type="text" placeholder="Email" name="email" id="email">
-        
-            <input class="textfield pass" type="text" placeholder="Password" name="password" id="password">
-       
-            <a class="button-1" href="">Register</a>
-    
-</div>
-</form>
+
+
+
     <!-- The Footer for the Webpage -->
     <!-- TIP: You can move it lower by changing the top value in the css. (Footer section) -->
     <footer>

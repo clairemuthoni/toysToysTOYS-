@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Toys</title>
 </head>
+
 <body>
     <!-- The Header for the Webpage -->
     <header>
@@ -17,13 +19,22 @@
         </div>
         <div class="nav-buttons">
             <a href=""><img class="nav-link help-icon" src="..\..\assets\icons\help.png" alt="help"></a>
-            <a href="">
+            <a href="..\login\login.php">
                 <div class="nav-account">
                     <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
-                    <p>Hi, User</p>
+                    <p>
+                        <?php
+                        session_start();
+                        if (isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+                            echo "Hi, " . $_SESSION['first_name'];
+                        } else {
+                            echo "Login";
+                        }
+                        ?>
+                    </p>
                 </div>
             </a>
-        <a href="..\cart\cart.html"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+            <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
         </div>
     </header>
 
@@ -115,4 +126,5 @@
         </div>
     </footer>
 </body>
+
 </html>

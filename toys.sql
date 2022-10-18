@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `first_name` tinytext NOT NULL,
   `last_name` tinytext NOT NULL,
   `email` varchar(30) NOT NULL,
-  `address` varchar(30) NOT NULL,
+  `address` varchar(30) DEFAULT NULL,
   `password` varchar(30) NOT NULL,
   FOREIGN KEY (role_id) REFERENCES roles(role_id)
 );
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `card_details` (
   `user_id` int(10) PRIMARY KEY,
   `card_number` int(16) NOT NULL,
   `security_number` int(10) NOT NULL,
-  `expiry_date` datetime NOT NULL,
+  `expiry_date` VARCHAR(30) NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 

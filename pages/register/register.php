@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="buyeraccount.css">
+    <link rel="stylesheet" href="style.css">
     <title>Toys</title>
 </head>
+
 <body>
     <!-- The Header for the Webpage -->
     <header>
@@ -17,50 +19,46 @@
         </div>
         <div class="nav-buttons">
             <a href=""><img class="nav-link help-icon" src="..\..\assets\icons\help.png" alt="help"></a>
-            <a href="">
+            <a href="..\login\login.php">
                 <div class="nav-account">
                     <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
-                    <p>Hi, User</p>
+                    <p>
+                        <?php
+                        session_start();
+                        if (isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+                            echo "Hi, " . $_SESSION['first_name'];
+                        } else {
+                            echo "Login";
+                        }
+                        ?>
+                    </p>
                 </div>
             </a>
-        <a href="..\cart\cart.html"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+            <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
         </div>
     </header>
-    <img id="profile" src="..\..\assets\images\facebook_no_profile_pic2-jpg.gif" width="300" height="450">
-    <form action="buyer_info.html" method="GET">
 
-        <div id="content">
-            <h1><b>Personal info</b></h1>
-            <label for="uname">Username</label><br>
-            <!--
-                <input type="text" placeholder="Username" name="uname">-->
-            <!-- Get a photo of an pen -->
-            <!--<img src=""    ><br>-->
 
-            <h1><b>Password</b></h1>
-            <span>Create a password or modify your existing one.</span><br>
-            <label for="emails">**********************</label><br>
-            <!--
-                  <input type="email" name="emails">-->
-            <!-- Get a photo of an pen -->
-            <!--<img src=""    ><br>-->
 
-            <h1>Secret questions</h1>
-            <span>Give yourself another secure way<br> to recover your account.</span>
-            <label for="pnumber">.</label><br>
-            <!--
-                <input type="number" name="pnumber">-->
-            <!-- Get a photo of an pen -->
-            <!--<img src=""    ><br>-->
 
-            <div id="buttons">
-                <input class="button-1" id="save" type="submit" value="Save info"><br>
-                <a href="account_card_info\buyeraccount.html"><button class="button-1" id="Payment">Payment Info</button></a><br>
-                <a href="buyer_info\buyer_info.html"><button class="button-1" id="buyer_info">Personal Info</button></a>
-            </div>
+    <!-- Add your page specific code here -->
+    <form action="process-register.php" method="post">
+        <div class="form">
+
+            <p class="Register"> Register</p>
+
+            <input class="textfield fname" type="text" placeholder="First Name" name="first_name" id="fname">
+
+            <input class="textfield lname" type="text" placeholder="Last name" name="last_name" id="lname">
+
+            <input class="textfield email" type="text" placeholder="Email" name="email" id="email">
+
+            <input class="textfield pass" type="text" placeholder="Password" name="password" id="password">
+
+            <input class="button-1" type="submit" value="Register">
+
         </div>
     </form>
-
     <!-- The Footer for the Webpage -->
     <!-- TIP: You can move it lower by changing the top value in the css. (Footer section) -->
     <footer>
@@ -91,4 +89,5 @@
         </div>
     </footer>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/fontawesome.min.css">
     <title>Toys</title>
 </head>
+
 <body>
     <!-- The Header for the Webpage -->
     <header>
@@ -19,53 +21,65 @@
         </div>
         <div class="nav-buttons">
             <a href=""><img class="nav-link help-icon" src="..\..\assets\icons\help.png" alt="help"></a>
-            <a href="">
+            <a href="..\login\login.php">
                 <div class="nav-account">
                     <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
-                    <p>Hi, User</p>
+                    <p>
+                        <?php
+                        session_start();
+                        if (isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+                            echo "Hi, " . $_SESSION['first_name'];
+                        } else {
+                            echo "Login";
+                        }
+                        ?>
+                    </p>
                 </div>
             </a>
-        <a href="..\cart\cart.html"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+            <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
         </div>
     </header>
-<div class="container">
-<p><h1 class="class-text">Shopping Cart</h1></p>
-</div>
+    <div class="container">
+        <p>
+        <h1 class="class-text">Shopping Cart</h1>
+        </p>
+    </div>
 
-<div class="cart">
-    <div class="products">
-        <div class="product">
-            <img class="" src="hummer.png" alt="">
-            <div class="product-info">
-                <h3 class="product-name">Hummer Toy Car</h3>
-                <h3 class="product-supplier">Front suppliers</h3>
-                <h2 class="product-price">Ksh 5000</h2>
-                <p class="product-quantity">Quantity:<input value="1" name=""></p>
+    <div class="cart">
+        <div class="products">
+            <div class="product">
+                <img class="" src="hummer.png" alt="">
+                <div class="product-info">
+                    <h3 class="product-name">Hummer Toy Car</h3>
+                    <h3 class="product-supplier">Front suppliers</h3>
+                    <h2 class="product-price">Ksh 5000</h2>
+                    <p class="product-quantity">Quantity:<input value="1" name=""></p>
                     <p class="product-remove">
-                      <img class="" src="delete.png" alt="">
-                       
+                        <img class="" src="delete.png" alt="">
+
                     </p>
                 </div>
             </div>
-             </div>
-             <div class="cart-total">
-                <p>
-                    <span>Cart Summary</span>
-                    
-                </p>
-                 <p>
-                    <span>Total:</span>
-                    <span>Ksh 5000</span>
-                </p>
-                
-                <div>
-                <a class="button-1" href="">Proceed to checkout</a></div>
-                <div>
-                    <br>
-                    <a class="button-1" href="">Continue Shopping</a>
-                </div>
-             </div>
-         </div>
+        </div>
+        <div class="cart-total">
+            <p>
+                <span>Cart Summary</span>
+
+            </p>
+            <p>
+                <span>Total:</span>
+                <span>Ksh 5000</span>
+            </p>
+
+            <div>
+                <a class="button-1" href="">Proceed to checkout</a>
+            </div>
+            <div>
+                <br>
+                <a class="button-1" href="">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Add your page specific code here -->
 
@@ -101,4 +115,5 @@
         </div>
     </footer>
 </body>
+
 </html>
