@@ -32,7 +32,7 @@ if (file_exists("/product-images/" . $item_image_name)) {
 }
 
 if (empty($errors) == true) {
-    move_uploaded_file($file_name, "..\..\assets\product-images\\". $item_image_name);
+    move_uploaded_file($file_tmp, "..\..\assets\product-images\\". $item_image_name);
     echo "<br>Success";
 } else {
     print_r($errors);
@@ -56,7 +56,7 @@ if (file_exists("..\..\assets\product-images\\" . $item_image_name)) {
 }
 
 if (empty($errors) == true) {
-    move_uploaded_file($file_name, "..\..\assets\product-images\\" . $item_image_name);
+    move_uploaded_file($file_tmp, "..\..\assets\product-images\\" . $item_image_name);
     echo "<br>Success";
 } else {
     print_r($errors);
@@ -72,6 +72,8 @@ $sql = "INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `pr
 
 if ($conn->query($sql) == TRUE) {
     echo "You have successfully added a product";
+    header('Location: add_product.php');
+    exit;
 } else {
     echo "error:" . $sql . "<br>" . $conn->error;
 }

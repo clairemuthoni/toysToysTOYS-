@@ -14,8 +14,12 @@
 
    if (mysqli_query($conn, $sql)){
        echo "User registered successfully";
+       header('Location: ..\homepage\home.php');
+       exit;
    }
    else{
        echo "Error".mysqli_error($conn);
+       header('Location: ..\homepage\home.php');
+       exit;
    }
 ?> 

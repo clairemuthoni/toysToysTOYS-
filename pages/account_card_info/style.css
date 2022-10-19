@@ -288,8 +288,14 @@ footer {
     border-radius: 10px;
 }
 
+.spacer {
+    height: 125px;
+    width: 100%;
+}
+
 .mainn{
-    margin-top:5%;
+    /* position: relative; */
+    top: 125px;
     margin-left: 400px;
     color:#F10000;
 }
@@ -312,6 +318,7 @@ font-weight: 400;
 font-size: 40px;
 line-height: 54px;
 color: #F10000;
+margin: 0;
 }
 
 .buyerbutton1{
@@ -380,4 +387,31 @@ border-radius: 15px;
     width: 200px;
     border: 1px solid #000000;
     border-radius: 10px;
+}
+.button-1 {
+    /* ---Change the button's position--- */
+
+    /* position: absolute; */
+    /* top: ; */
+    /* left: ; */
+    /* right: ; */
+
+    text-decoration: none;
+
+    padding: 5px 15px;
+
+    border-radius: 15px;
+    background-color: #DF2935;
+    border: 1px solid #DF2935;
+    color: white;
+    transition-duration: 0.2s;
+}
+
+.button-1:hover {
+    /* font-weight: bold; */
+    color: #DF2935;
+    background-color: white;
+    border: 1px solid #DF2935;
+    box-shadow: 1px 1px 8px #DF2935;
+    text-shadow: 0px 0px 0px;
 }

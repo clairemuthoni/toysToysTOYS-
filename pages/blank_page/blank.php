@@ -10,7 +10,7 @@
 <body>
     <!-- The Header for the Webpage -->
     <header>
-        <a href="..\homepage\home.html" class="logo-text">TOYS</a>
+        <a href="..\homepage\home.php" class="logo-text">TOYS</a>
         <div class="nav-search-bar">
             <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search" id="search">
             <a href=""><img class="nav-search-button" src="..\..\assets\icons\search-filled.png" alt="search"></a>
@@ -48,7 +48,7 @@
     <!-- TIP: You can move it lower by changing the top value in the css. (Footer section) -->
     <footer>
         <div class="footer-list-1">
-            <a href="..\homepage\home.html" class="logo-text">TOYS</a>
+            <a href="..\homepage\home.php" class="logo-text">TOYS</a>
             <div class="footer-social-media-links">
                 <a href="https://www.facebook.com/"><img class="icon-facebook" src="..\..\assets\icons\facebook.png" alt="facebook"></a>
                 <a href="https://www.instagram.com/"><img class="icon-instagram" src="..\..\assets\icons\instagram.png" alt="instagram"></a>

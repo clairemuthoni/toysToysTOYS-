@@ -12,7 +12,7 @@
 <body>
     <!-- The Header for the Webpage -->
     <header>
-        <a href="..\homepage\home.html" class="logo-text">TOYS</a>
+        <a href="..\homepage\home.php" class="logo-text">TOYS</a>
         <div class="nav-search-bar">
             <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search"
                 id="search">
@@ -33,13 +33,12 @@
 
 
     <main>
-        <p>.</p>
         <div class="login">
             <h1 class="logintitle">Login</h1>
             <form action="process-login.php" method="POST">
                 <input type="text" id="email" name="email" placeholder="Email" class="textfield" required><br><br>
                 <input type="password" id="pass" name="pass" placeholder="Password" class="textfield" required><br><br>
-                <a href="..\register\register.html">Create an Account</a><br><br>
+                <a href="..\register\register.php">Create an Account</a><br><br>
                 <input class="button-1" type="submit" value="Login">
             </form>
         </div>
@@ -50,7 +49,7 @@
     <!-- TIP: You can move it lower by changing the top value in the css. (Footer section) -->
     <footer>
         <div class="footer-list-1">
-            <a href="..\homepage\home.html" class="logo-text">TOYS</a>
+            <a href="..\homepage\home.php" class="logo-text">TOYS</a>
             <div class="footer-social-media-links">
                 <a href="https://www.facebook.com/"><img class="icon-facebook" src="..\..\assets\icons\facebook.png"
                         alt="facebook"></a>
