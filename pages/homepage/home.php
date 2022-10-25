@@ -53,14 +53,14 @@
       <!-- <div class="numbertext"></div> -->
       <img src="..\..\assets\images\Image 1.png" style="width:100%">
       <p class="foreground-text">Toys for your loved ones</p>
-      <a class="button-1" href="..\products_list\product_list.html">SHOP NOW</a>
+      <a class="button-1" href="..\products_list\product_list.php">SHOP NOW</a>
     </div>
 
     <div class="mySlides fade">
       <!-- <div class="numbertext"></div> -->
       <img src="..\..\assets\images\Image 2.png" style="width:100%">
       <p class="foreground-text">Get toys for play and for learning </p>
-      <a class="button-1" href="..\products_list\product_list.html">SHOP NOW</a>
+      <a class="button-1" href="..\products_list\product_list.php">SHOP NOW</a>
 
     </div>
 
@@ -96,7 +96,7 @@
   <!-- <div>
     <img class="back-image" src="..\..\assets\images\Image 1.png" width="100%" height="35%">
     <p class="foreground-text">Toys for your loved ones</p>
-    <a class="button-1" href="..\products_list\product_list.html">SHOP NOW</a>
+    <a class="button-1" href="..\products_list\product_list.php">SHOP NOW</a>
 
 
   </div> -->
@@ -107,7 +107,7 @@
   <br>
 
   <div class="horizontal-list">   
-    <a href="..\product\product.html">
+    <a href="..\product\product.php">
        <div class="product-card">
            <img src="..\..\assets\images\images\roman.jpg" alt="image">
            <p class="product-name">Roman Reigns Action Figure</p>
@@ -115,7 +115,7 @@
            <p class="product-price">Ksh 1750</p>
        </div>
    </a>
-       <a href="..\product\product.html">
+       <a href="..\product\product.php">
        <div class="product-card">
         <img src="..\..\assets\images\images\gun.jpg" alt="image">
         <p class="product-name">Burst Air Gun</p>
@@ -123,7 +123,7 @@
            <p class="product-price">Ksh 1200</p>
        </div>
    </a>
-   <a href="..\product\product.html">
+   <a href="..\product\product.php">
        <div class="product-card">
         <img src="..\..\assets\images\images\truck.jpeg" alt="image">
         <p class="product-name">Off-Road Truck</p>
@@ -131,7 +131,7 @@
            <p class="product-price">Ksh 1150</p>
        </div>
    </a>
-   <a href="..\product\product.html">
+   <a href="..\product\product.php">
        <div class="product-card">
         <img src="..\..\assets\images\images\barbiedoll.jpg" alt="image">
         <p class="product-name">Barbie Doll</p>
@@ -139,7 +139,7 @@
            <p class="product-price">Ksh 950</p>
        </div>
    </a>
-   <a href="..\product\product.html">
+   <a href="..\product\product.php">
        <div class="product-card">
         <img src="..\..\assets\images\images\hotwheels.jpeg" alt="image">
         <p class="product-name">Hot Wheels</p>
@@ -149,7 +149,7 @@
    </a>
 
 
-   <a href="..\product\product.html">
+   <a href="..\product\product.php">
      <div class="product-card">
       <img src="..\..\assets\images\images\batman.jpeg" alt="image">
       <p class="product-name">Batman Action Figure</p>
@@ -157,7 +157,7 @@
          <p class="product-price">Ksh 1850</p>
      </div>
  </a>
- <a href="..\product\product.html">
+ <a href="..\product\product.php">
      <div class="product-card">
       <img src="..\..\assets\images\images\firetruck.jpeg" alt="image">
       <p class="product-name">Fire Truck</p>
@@ -165,7 +165,7 @@
          <p class="product-price">Ksh 3050</p>
      </div>
  </a>
- <a href="..\product\product.html">
+ <a href="..\product\product.php">
      <div class="product-card">
            <img src="..\..\assets\images\images\gijoe.jpg" alt="image">
          <p class="product-name">GI JOE</p>
@@ -173,7 +173,7 @@
          <p class="product-price">Ksh 1750</p>
      </div>
  </a>
- <a href="..\product\product.html">
+ <a href="..\product\product.php">
      <div class="product-card">
       <img src="..\..\assets\images\images\tennis.jpg" alt="image">
       <p class="product-name">Tennis Ball</p>
@@ -181,7 +181,7 @@
          <p class="product-price">Ksh 650</p>
      </div>
  </a>
- <a href="..\product\product.html">
+ <a href="..\product\product.php">
      <div class="product-card">
       <img src="..\..\assets\images\images\yoyo.jpg" alt="image">
       <p class="product-name">Magic Yoyo</p>
@@ -231,7 +231,7 @@
   <h2>Most Purchased</h2>
 
   <div class="horizontal-list">   
-    <a href="..\product\product.html">
+    <a href="..\product\product.php">
        <div class="product-card">
            <img src="..\..\assets\images\images\roman.jpg" alt="image">
            <p class="product-name">Roman Reigns Action Figure</p>
@@ -239,7 +239,7 @@
            <p class="product-price">Ksh 1750</p>
        </div>
    </a>
-       <a href="..\product\product.html">
+       <a href="..\product\product.php">
        <div class="product-card">
         <img src="..\..\assets\images\images\gun.jpg" alt="image">
         <p class="product-name">Burst Air Gun</p>
@@ -247,7 +247,7 @@
            <p class="product-price">Ksh 1200</p>
        </div>
    </a>
-   <a href="..\product\product.html">
+   <a href="..\product\product.php">
        <div class="product-card">
         <img src="..\..\assets\images\images\truck.jpeg" alt="image">
         <p class="product-name">Off-Road Truck</p>
@@ -255,7 +255,7 @@
            <p class="product-price">Ksh 1150</p>
        </div>
    </a>
-   <a href="..\product\product.html">
+   <a href="..\product\product.php">
        <div class="product-card">
         <img src="..\..\assets\images\images\barbiedoll.jpg" alt="image">
         <p class="product-name">Barbie Doll</p>
@@ -263,7 +263,7 @@
            <p class="product-price">Ksh 950</p>
        </div>
    </a>
-   <a href="..\product\product.html">
+   <a href="..\product\product.php">
        <div class="product-card">
         <img src="..\..\assets\images\images\hotwheels.jpeg" alt="image">
         <p class="product-name">Hot Wheels</p>
@@ -273,7 +273,7 @@
    </a>
 
 
-   <a href="..\product\product.html">
+   <a href="..\product\product.php">
      <div class="product-card">
       <img src="..\..\assets\images\images\batman.jpeg" alt="image">
       <p class="product-name">Batman Action Figure</p>
@@ -281,7 +281,7 @@
          <p class="product-price">Ksh 1850</p>
      </div>
  </a>
- <a href="..\product\product.html">
+ <a href="..\product\product.php">
      <div class="product-card">
       <img src="..\..\assets\images\images\firetruck.jpeg" alt="image">
       <p class="product-name">Fire Truck</p>
@@ -289,7 +289,7 @@
          <p class="product-price">Ksh 3050</p>
      </div>
  </a>
- <a href="..\product\product.html">
+ <a href="..\product\product.php">
      <div class="product-card">
            <img src="..\..\assets\images\images\gijoe.jpg" alt="image">
          <p class="product-name">GI JOE</p>
@@ -297,7 +297,7 @@
          <p class="product-price">Ksh 1750</p>
      </div>
  </a>
- <a href="..\product\product.html">
+ <a href="..\product\product.php">
      <div class="product-card">
       <img src="..\..\assets\images\images\tennis.jpg" alt="image">
       <p class="product-name">Tennis Ball</p>
@@ -305,7 +305,7 @@
          <p class="product-price">Ksh 650</p>
      </div>
  </a>
- <a href="..\product\product.html">
+ <a href="..\product\product.php">
      <div class="product-card">
       <img src="..\..\assets\images\images\yoyo.jpg" alt="image">
       <p class="product-name">Magic Yoyo</p>

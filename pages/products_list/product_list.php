@@ -50,50 +50,32 @@
     </div>
 
     <div class="horizontal-list">
-        <a href="..\product\product.html">
+
+    <?php 
+    require("..\..\middlewares\connection.php");
+    $sql = "SELECT * FROM products";
+    $result = mysqli_query($conn, $sql);
+    $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    foreach($products as $key=> $value) {
+        $sql = "SELECT `image_url` FROM product_images where `image_id` = ". $value['image_id'];
+        $result = mysqli_query($conn, $sql);
+        $images = mysqli_fetch_all($result);
+    ?>
+        <a href="..\product\product.php">
             <div class="product-card">
                 <div>
-                    <img class="image-1" src="..\..\assets\images\Product Image.png" alt="image">
-                    <img class="image-2" src="..\..\assets\images\dollhouse.jfif" alt="image">
+                    <img class="image-1" src="..\..\assets\product-images\<?php echo $images[0][0] ?>" alt="image-1">
+                    <img class="image-2" src="..\..\assets\product-images\<?php echo $images[1][0] ?>" alt="image-2">
                 </div>
-                <p class="product-name">LEGO Brick Box</p>
+                <p class="product-name"><?php echo $value['product_name'] ?></p>
                 <p class="supplier-name">Spark Retailers</p>
-                <p class="product-price">Ksh 1350</p>
+                <p class="product-price">Ksh <?php echo $value['product_price'] ?></p>
             </div>
         </a>
-        <a href="..\product\product.html">
-            <div class="product-card">
-                <div>
-                    <img class="image-1" src="..\..\assets\images\Product Image.png" alt="image">
-                    <img class="image-2" src="..\..\assets\images\dollhouse.jfif" alt="image">
-                </div>
-                <p class="product-name">LEGO Brick Box</p>
-                <p class="supplier-name">Spark Retailers</p>
-                <p class="product-price">Ksh 1350</p>
-            </div>
-        </a>
-        <a href="..\product\product.html">
-            <div class="product-card">
-                <div>
-                    <img class="image-1" src="..\..\assets\images\Product Image.png" alt="image">
-                    <img class="image-2" src="..\..\assets\images\dollhouse.jfif" alt="image">
-                </div>
-                <p class="product-name">LEGO Brick Box</p>
-                <p class="supplier-name">Spark Retailers</p>
-                <p class="product-price">Ksh 1350</p>
-            </div>
-        </a>
-        <a href="..\product\product.html">
-            <div class="product-card">
-                <div>
-                    <img class="image-1" src="..\..\assets\images\Product Image.png" alt="image">
-                    <img class="image-2" src="..\..\assets\images\dollhouse.jfif" alt="image">
-                </div>
-                <p class="product-name">LEGO Brick Box</p>
-                <p class="supplier-name">Spark Retailers</p>
-                <p class="product-price">Ksh 1350</p>
-            </div>
-        </a>
+    <?php
+    }
+    ?>
     </div>
 
     <!-- The Footer for the Webpage -->
