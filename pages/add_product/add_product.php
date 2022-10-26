@@ -37,28 +37,42 @@
 <p class="add">ADD PRODUCT</p>
         <div class="pname">
             <label for="product_name"> Name:</label>
-            <input class="textfield" type="type" name="pname">
+            <input class="textfield tf-align" type="type" name="pname">
         </div>
         <div class="image">
-            <label for="product_image"> image: </label>
-            <input class="textfield" type="file" name="product_image_1">
-            <input class="textfield" type="file" name="product_image_2">
+            <label for="product_image"> Image: </label>
+            <input class="textfield tf-align" type="file" name="product_image_1">
+            <input class="textfield tf-align-2" type="file" name="product_image_2">
         </div>
         <div class="description">
             <label for="product_description "> Description: </label>
-            <input class="textfield" type="type" name="Description">
+            <input class="textfield tf-align" type="type" name="Description">
         </div>
         <div class="quantity">
             <label for="available_quantity"> Quantity: </label>
-            <input class="textfield" type="type" name="Quantity">
+            <input class="textfield tf-align" type="type" name="Quantity">
         </div>
         <div class="category">
             <label for="Category"> Category: </label>
-            <input class="textfield" type="type" name="Category">
+            <!-- <input class="textfield" type="type" name="Category"> -->
+            <select class="textfield tf-align" type="text" name="Category" id="category" placeholder="Category">
+            <?php
+                require("..\..\middlewares\connection.php");
+
+                $sql_cat = "SELECT * FROM `categories`";
+                $result_cat = mysqli_query($conn, $sql_cat);
+                $array_cat = mysqli_fetch_all($result_cat, MYSQLI_ASSOC);
+                
+                foreach($array_cat as $key => $value){
+                    echo "<option value=".$value["category_id"].">".$value["category_name"]."</option>";
+                }
+                
+            ?>
+            </select>
         </div>
         <div class="price">
             <label for="product_price"> Price: </label>
-            <input class="textfield" type="type" name="Price">
+            <input class="textfield tf-align" type="type" name="Price">
         </div>
         <input class="button-1" type="submit" name="submit2" value="ADD PRODUCT">
         </form>
