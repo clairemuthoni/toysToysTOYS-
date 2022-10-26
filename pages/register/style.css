@@ -272,7 +272,7 @@ div.form{
     transition-duration: 0.2s;
 
     flex: none;
-order: 5;
+order: 7;
 flex-grow: 0;
 }
 
@@ -324,4 +324,12 @@ flex-grow: 0;
 order: 4;
 flex-grow: 0;
 }
+
+.radio {
+    color: #DF2935;
+    flex: none;
+    order: 5;
+    flex-grow: 0;
+}
+
 /* Add your CSS Here */

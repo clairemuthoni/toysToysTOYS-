@@ -1,5 +1,6 @@
 <?php
 require("..\..\middlewares\connection.php");
+require("..\..\middlewares\seller_guard.php");
 
 $pname = $_POST['pname'];
 $Description = $_POST['Description'];
@@ -68,7 +69,7 @@ mysqli_query($conn, $query);
 //------------------------Upload the product to the database------------------------
 
 $sql = "INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `product_description`, `image_id`, `product_price`, `available_quantity`, `created_at`, `updated_at`, `seller_id`)
-	 VALUES (NULL, NULL, '$pname', '$Description', '$image_id', '$Price', '$Quantity', '2022-10-17 20:17:32.000000', NULL, NULL)";
+	 VALUES (NULL, NULL, '$pname', '$Description', '$image_id', '$Price', '$Quantity', '$date', NULL, '$seller_id')";
 
 if ($conn->query($sql) == TRUE) {
     echo "You have successfully added a product";

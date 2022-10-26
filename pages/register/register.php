@@ -55,6 +55,14 @@
 
             <input class="textfield pass" type="text" placeholder="Password" name="password" id="password">
 
+            <div class="radio">
+                <input class="" type="radio" id="Buyer" name="role" value="Buyer">
+                <label class="" for="Male">Buyer</label>
+                <input class="" type="radio" id="Seller" name="role" value="Seller">
+                <label class="" for="Seller">Seller</label>
+            </div>
+
+
             <input class="button-1" type="submit" value="Register">
 
         </div>
