@@ -71,7 +71,7 @@
             </select>
         </div>
         <div class="price">
-            <label for="product_price"> Price: </label>
+            <label for="product_price"> Price (Ksh.): </label>
             <input class="textfield tf-align" type="type" name="Price">
         </div>
         <input class="button-1" type="submit" name="submit2" value="ADD PRODUCT">

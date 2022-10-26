@@ -42,12 +42,25 @@
 
     <?php
     require ('..\..\middlewares\connection.php');
-$sql=" SELECT * FROM products WHERE product_id =3";
+    $id = $_GET['id'];
+
+$sql=" SELECT * FROM products WHERE product_id = $id";
 $result=mysqli_query($conn,$sql)
 
 ?>
 <?php 
             while($row = mysqli_fetch_assoc($result)){
+              $sql = "SELECT `image_url` FROM product_images where `image_id` = ". $row['image_id'];
+              $result = mysqli_query($conn, $sql);
+              $images = mysqli_fetch_all($result);
+
+              if (!isset($row['seller_id'])) {
+                $row['seller_id'] = 1;
+            }
+
+              $sql = "SELECT * FROM sellers where `seller_id` = ". $row['seller_id'];
+              $result = mysqli_query($conn, $sql);
+              $seller = mysqli_fetch_assoc($result);
 
              ?>
 
@@ -58,15 +71,8 @@ $result=mysqli_query($conn,$sql)
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
-      <div class="swiper-slide"><img src="lego_images/lego1.jfif"></div>
-      <div class="swiper-slide"><img src="lego_images/lego2.jfif"></div>
-      <div class="swiper-slide"><img src="lego_images/lego3.jfif"></div>
-      <div class="swiper-slide"><img src="lego_images/lego4.jfif"></div>
-      <div class="swiper-slide"><img src="lego_images/lego5.jfif"></div>
-      <div class="swiper-slide"><img src="lego_images/lego6.jfif"></div>
-
-
-      ...
+      <div class="swiper-slide"><img src="..\..\assets\product-images\<?php echo $images[0][0] ?>"></div>
+      <div class="swiper-slide"><img src="..\..\assets\product-images\<?php echo $images[1][0] ?>"></div>
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
@@ -77,7 +83,7 @@ $result=mysqli_query($conn,$sql)
     </div>
     </div>
      <p class="name"> <?php echo $row['product_name'] ?></p>
-     <p class="retailers"> Spark retailers</p>
+     <p class="retailers"> <?php echo $seller['company_name'] ?></p>
      <p class="price">Kshs <?php echo $row['product_price'] ?></p>
      <a class="button-1" href="">ADD TO CART</a>
      <p class="description"> Description</p>

@@ -38,13 +38,24 @@
 
     <img id="profile" src="..\..\assets\images\facebook_no_profile_pic2-jpg.gif" width="300" height="450">
 
-    <span id="trial">Welcome, customer ! </span>
+    <span id="trial">Welcome, 
+        <?php
+        if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+            echo $_SESSION['first_name'];
+         }
+         else {
+          echo "Customer";
+         }
+        ?>
+    </span>
 
     <form action="buyer_info2.php" method="POST">
 
     <?php
-            require("connection.php");
-            $sql = "SELECT * FROM users WHERE role_id='1'";//user_id='{$_SESSION["user_id"]}'
+            require("..\..\middlewares\connection.php");
+            require("..\..\middlewares\user_guard.php");
+
+            $sql = "SELECT * FROM users WHERE user_id='$user_id'";//user_id='{$_SESSION["user_id"]}'
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -60,21 +71,21 @@
             <!--<img src=""    ><br>-->
 
             <h1>Contact info</h1>
-            <label for="emails">Email Adress</label><br><br>
-            <input type="email" id="emails" name="emails" placeholder="Email Address" value="<?php echo $row['email']; ?>" disabled required><br><br><br>
+            <label for="emails">Email Address</label><br><br>
+            <input type="text" id="emails" name="emails" placeholder="Email Address" value="<?php echo $row['email']; ?>" required><br><br><br>
             <!--
                   <input type="email" name="emails">-->
             <!-- Get a photo of an pen -->
             <!--<img src=""    ><br>-->
-            <label for="pnumber">Phone number</label><br><br>
-            <input type="text" id="pnumber" name="pnumber" placeholder="Phone Number" value="<?php echo $row['telephone']; ?>" disabled required><br><br><br>
+            <!-- <label for="pnumber">Phone number</label><br><br> -->
+            <!-- <input type="text" id="pnumber" name="pnumber" placeholder="Phone Number" value=" " disabled required><br><br><br> -->
             <!--
                 <input type="number" name="pnumber">-->
             <!-- Get a photo of an pen -->
             <!--<img src=""    ><br>-->
 
             <label for="add_name">Address</label><br><br>
-            <input type="email" id="address" name="address" placeholder="Address" value="<?php echo $row['address']; ?>" disabled required>
+            <input type="text" id="address" name="address" placeholder="Address" value="<?php echo $row['address']; ?>" required>
 
             <!--
                 <input type="text" name="add_name">-->
@@ -96,7 +107,6 @@
     </form>
 
     <?php
-require("connection.php");
 if (isset($_POST['submit'])){
 $uname=$_POST['uname'];
 $emails=$_POST['emails'];

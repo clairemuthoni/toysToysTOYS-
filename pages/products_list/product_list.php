@@ -44,15 +44,25 @@
     <!-- Add your page specific code here -->
     <div class="categories">
         <p class="category-title">Categories</p>
-        <p class="category-text">Category 1</p>
-        <p class="category-text">Category 2</p>
-        <p class="category-text">Category 3</p>
+        <?php
+                require("..\..\middlewares\connection.php");
+
+                $sql_cat = "SELECT * FROM `categories`";
+                $result_cat = mysqli_query($conn, $sql_cat);
+                $array_cat = mysqli_fetch_all($result_cat, MYSQLI_ASSOC);
+                
+                foreach($array_cat as $key => $value){                
+            ?>
+            <a href="product_list.php?category=<?php echo $value['category_id'] ?>"><p class="category-text"><?php echo $value['category_name'] ?></p></a>
+
+        <?php
+        }
+        ?>
     </div>
 
     <div class="horizontal-list">
 
     <?php 
-    require("..\..\middlewares\connection.php");
     $sql = "SELECT * FROM products";
     $result = mysqli_query($conn, $sql);
     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -61,15 +71,23 @@
         $sql = "SELECT `image_url` FROM product_images where `image_id` = ". $value['image_id'];
         $result = mysqli_query($conn, $sql);
         $images = mysqli_fetch_all($result);
+
+        if (!isset($value['seller_id'])) {
+            $value['seller_id'] = 1;
+        }
+
+        $sql = "SELECT * FROM sellers where `seller_id` = ". $value['seller_id'];
+        $result = mysqli_query($conn, $sql);
+        $seller = mysqli_fetch_assoc($result);
     ?>
-        <a href="..\product\product.php">
+        <a href="..\product\product.php?id=<?php echo $value['product_id'] ?>">
             <div class="product-card">
                 <div>
                     <img class="image-1" src="..\..\assets\product-images\<?php echo $images[0][0] ?>" alt="image-1">
                     <img class="image-2" src="..\..\assets\product-images\<?php echo $images[1][0] ?>" alt="image-2">
                 </div>
                 <p class="product-name"><?php echo $value['product_name'] ?></p>
-                <p class="supplier-name">Spark Retailers</p>
+                <p class="supplier-name"><?php echo $seller['company_name'] ?></p>
                 <p class="product-price">Ksh <?php echo $value['product_price'] ?></p>
             </div>
         </a>

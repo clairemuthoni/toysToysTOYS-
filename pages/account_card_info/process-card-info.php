@@ -3,7 +3,7 @@ session_start();
 require("..\..\middlewares\connection.php");
 require("..\..\middlewares\user_guard.php");
 
-$user_id = $_SESSION['user_id'];
+// $user_id = $_SESSION['user_id'];
 $card_number = $_POST['cardNo'];
 $security_number = $_POST['cvv'];
 $expiry_date = $_POST['expiry'];
