@@ -40,7 +40,19 @@
         </div>
     </header>
 
-    <div class="image">
+    <?php
+    require ('..\..\middlewares\connection.php');
+$sql=" SELECT * FROM products WHERE product_id =3";
+$result=mysqli_query($conn,$sql)
+
+?>
+<?php 
+            while($row = mysqli_fetch_assoc($result)){
+
+             ?>
+
+
+             <div class="image">
     <!-- Slider main container -->
 <div class="swiper">
     <!-- Additional required wrapper -->
@@ -64,16 +76,13 @@
     <div class="swiper-button-next"></div>
     </div>
     </div>
-<p class="name">LEGO Brick Box</p>
-<p class="retailers">Spark Retailers</p>
-<p class="price">Ksh 1350</p>
-<a class="button-1" href="">ADD TO CART</a>
-<p class="description">Description</p>
-<p class="description1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut <br> labore et dolore magna aliqua. Ut enim ad
-     minim veniam, quis nostrud exercitation ullamco <br> laboris nisi ut aliquip ex 
-     ea commodo consequat.</p>
-
+     <p class="name"> <?php echo $row['product_name'] ?></p>
+     <p class="retailers"> Spark retailers</p>
+     <p class="price">Kshs <?php echo $row['product_price'] ?></p>
+     <a class="button-1" href="">ADD TO CART</a>
+     <p class="description"> Description</p>
+     <p class="description1"><?php echo $row['product_description'] ?></p>
+     
 
     <!-- Add your page specific code here -->
     <footer>
@@ -125,5 +134,9 @@
  
 });
     </script>
+    <?php }
+
+ ?>
 </body>
+
 </html>
