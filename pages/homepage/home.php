@@ -11,6 +11,8 @@
 </head>
 
 <body>
+
+
   <!-- The Header for the Webpage -->
   <header>
     <a href="..\homepage\home.html" class="logo-text">TOYS</a>
@@ -83,23 +85,24 @@
       setTimeout(showSlides, 5000);
     }
   </script>
-  <!-- <div>
-    <img class="back-image" src="..\..\assets\images\Image 1.png" width="100%" height="35%">
-    <p class="foreground-text">Toys for your loved ones</p>
-    <a class="button-1" href="..\products_list\product_list.html">SHOP NOW</a>
-
-
-  </div> -->
-
+  
   <br>
 
   <h2>Newest Arrival</h2>
   <br>
 
+  <?
+    $mysqli=new mysqli('Localhost','root','','mysql') or die($mysqli->connect_error);
+    $productImages='product_images';
+
+    $result=$mysqli->query("SELECT * FROM $productImages") or die($mysqli->connect_error);
+
+  
+
   <div class="horizontal-list">   
     <a href="..\product\product.html">
        <div class="product-card">
-           <img src="..\..\assets\images\images\roman.jpg" alt="image">
+           echo "<img src='{$data['image_url']}' width=10% height=40%>";
            <p class="product-name">Roman Reigns Action Figure</p>
            <p class="supplier-name">WWE Retailers</p>
            <p class="product-price">Ksh 1750</p>
@@ -181,7 +184,7 @@
  </a>
  
 </div>
-
+?>
 
   <h2>Most Purchased</h2>
 
