@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,14 @@
     <link rel="stylesheet" href="style.css">
     <title>Toys</title>
 </head>
+
 <body>
     <!-- The Header for the Webpage -->
     <header>
-        <a href="..\homepage\home.html" class="logo-text">TOYS</a>
+        <a href="..\homepage\home.php" class="logo-text">TOYS</a>
         <div class="nav-search-bar">
-            <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search" id="search">
+            <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search"
+                id="search">
             <a href=""><img class="nav-search-button" src="..\..\assets\icons\search-filled.png" alt="search"></a>
         </div>
         <div class="nav-buttons">
@@ -23,26 +26,37 @@
                     <p>Hi, User</p>
                 </div>
             </a>
-        <a href="..\cart\cart.html"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+            <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
         </div>
     </header>
 
 
 
-
-    <!-- Add your page specific code here -->
-
+    <main>
+        <div class="login">
+            <h1 class="logintitle">Login</h1>
+            <form action="process-login.php" method="POST">
+                <input type="text" id="email" name="email" placeholder="Email" class="textfield" required><br><br>
+                <input type="password" id="pass" name="pass" placeholder="Password" class="textfield" required><br><br>
+                <a href="..\register\register.php">Create an Account</a><br><br>
+                <input class="button-1" type="submit" value="Login">
+            </form>
+        </div>
+    </main>
 
 
     <!-- The Footer for the Webpage -->
     <!-- TIP: You can move it lower by changing the top value in the css. (Footer section) -->
     <footer>
         <div class="footer-list-1">
-            <a href="..\homepage\home.html" class="logo-text">TOYS</a>
+            <a href="..\homepage\home.php" class="logo-text">TOYS</a>
             <div class="footer-social-media-links">
-                <a href="https://www.facebook.com/"><img class="icon-facebook" src="..\..\assets\icons\facebook.png" alt="facebook"></a>
-                <a href="https://www.instagram.com/"><img class="icon-instagram" src="..\..\assets\icons\instagram.png" alt="instagram"></a>
-                <a href="https://www.twitter.com/"><img class="icon-twitter" src="..\..\assets\icons\twitter.png" alt="twitter"></a>
+                <a href="https://www.facebook.com/"><img class="icon-facebook" src="..\..\assets\icons\facebook.png"
+                        alt="facebook"></a>
+                <a href="https://www.instagram.com/"><img class="icon-instagram" src="..\..\assets\icons\instagram.png"
+                        alt="instagram"></a>
+                <a href="https://www.twitter.com/"><img class="icon-twitter" src="..\..\assets\icons\twitter.png"
+                        alt="twitter"></a>
             </div>
             <p class="footer-copyright">©2022. Toys</p>
         </div>
@@ -64,4 +78,5 @@
         </div>
     </footer>
 </body>
+
 </html>

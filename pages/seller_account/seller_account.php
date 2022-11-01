@@ -7,20 +7,30 @@
 
     <body>
       <header>
-        <a href="..\homepage\home.html" class="logo-text">TOYS</a>
+        <a href="..\homepage\home.php" class="logo-text">TOYS</a>
         <div class="nav-search-bar">
             <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search" id="search">
             <a href=""><img class="nav-search-button" src="..\..\assets\icons\search-filled.png" alt="search"></a>
         </div>
         <div class="nav-buttons">
             <a href=""><img class="nav-link help-icon" src="..\..\assets\icons\help.png" alt="help"></a>
-            <a href="">
+            <a href="..\login\login.php">
                 <div class="nav-account">
-                    <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
-                    <p>Hi, User</p>
+                  <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
+                  <p>
+                    <?php
+                    session_start();
+                      if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+                        echo "Hi, ".$_SESSION['first_name'];
+                     }
+                     else {
+                      echo "Login";
+                     }
+                    ?>
+                  </p>
                 </div>
-            </a>
-        <a href="..\cart\cart.html"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+              </a>
+        <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
         </div>
     </header>
         <div class="content">
@@ -57,7 +67,7 @@
 
           <footer>
             <div class="footer-list-1">
-                <a href="..\homepage\home.html" class="logo-text">TOYS</a>
+                <a href="..\homepage\home.php" class="logo-text">TOYS</a>
                 <div class="footer-social-media-links">
                     <a href="https://www.facebook.com/"><img class="icon-facebook" src="..\..\assets\icons\facebook.png" alt="facebook"></a>
                     <a href="https://www.instagram.com/"><img class="icon-instagram" src="..\..\assets\icons\instagram.png" alt="instagram"></a>

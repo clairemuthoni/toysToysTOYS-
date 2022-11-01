@@ -242,8 +242,8 @@ footer {
     flex-grow: 0;
 }
 .login{
-    margin-top: 10%;
-    margin-left: 100px;
+    position: absolute;
+    top: 125px;
 }
 .logintitle{
     font-weight: 700;

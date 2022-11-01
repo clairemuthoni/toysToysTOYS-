@@ -13,38 +13,66 @@
 <body>
     <!-- The Header for the Webpage -->
     <header>
-        <a href="..\homepage\home.html" class="logo-text">TOYS</a>
+        <a href="..\homepage\home.php" class="logo-text">TOYS</a>
         <div class="nav-search-bar">
             <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search" id="search">
             <a href=""><img class="nav-search-button" src="..\..\assets\icons\search-filled.png" alt="search"></a>
         </div>
         <div class="nav-buttons">
             <a href=""><img class="nav-link help-icon" src="..\..\assets\icons\help.png" alt="help"></a>
-            <a href="">
+            <a href="..\login\login.php">
                 <div class="nav-account">
-                    <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
-                    <p>Hi, User</p>
+                  <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
+                  <p>
+                    <?php
+                    session_start();
+                      if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+                        echo "Hi, ".$_SESSION['first_name'];
+                     }
+                     else {
+                      echo "Login";
+                     }
+                    ?>
+                  </p>
                 </div>
-            </a>
-        <a href="..\cart\cart.html"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+              </a>
+        <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
         </div>
     </header>
 
-    <div class="image">
+    <?php
+    require ('..\..\middlewares\connection.php');
+    $id = $_GET['id'];
+
+$sql=" SELECT * FROM products WHERE product_id = $id";
+$result=mysqli_query($conn,$sql)
+
+?>
+<?php 
+            while($row = mysqli_fetch_assoc($result)){
+              $sql = "SELECT `image_url` FROM product_images where `image_id` = ". $row['image_id'];
+              $result = mysqli_query($conn, $sql);
+              $images = mysqli_fetch_all($result);
+
+              if (!isset($row['seller_id'])) {
+                $row['seller_id'] = 1;
+            }
+
+              $sql = "SELECT * FROM sellers where `seller_id` = ". $row['seller_id'];
+              $result = mysqli_query($conn, $sql);
+              $seller = mysqli_fetch_assoc($result);
+
+             ?>
+
+
+             <div class="image">
     <!-- Slider main container -->
 <div class="swiper">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
-      <div class="swiper-slide"><img src="lego_images/lego1.jfif"></div>
-      <div class="swiper-slide"><img src="lego_images/lego2.jfif"></div>
-      <div class="swiper-slide"><img src="lego_images/lego3.jfif"></div>
-      <div class="swiper-slide"><img src="lego_images/lego4.jfif"></div>
-      <div class="swiper-slide"><img src="lego_images/lego5.jfif"></div>
-      <div class="swiper-slide"><img src="lego_images/lego6.jfif"></div>
-
-
-      ...
+      <div class="swiper-slide"><img src="..\..\assets\product-images\<?php echo $images[0][0] ?>"></div>
+      <div class="swiper-slide"><img src="..\..\assets\product-images\<?php echo $images[1][0] ?>"></div>
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
@@ -54,21 +82,18 @@
     <div class="swiper-button-next"></div>
     </div>
     </div>
-<p class="name">LEGO Brick Box</p>
-<p class="retailers">Spark Retailers</p>
-<p class="price">Ksh 1350</p>
-<a class="button-1" href="">ADD TO CART</a>
-<p class="description">Description</p>
-<p class="description1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut <br> labore et dolore magna aliqua. Ut enim ad
-     minim veniam, quis nostrud exercitation ullamco <br> laboris nisi ut aliquip ex 
-     ea commodo consequat.</p>
-
+     <p class="name"> <?php echo $row['product_name'] ?></p>
+     <p class="retailers"> <?php echo $seller['company_name'] ?></p>
+     <p class="price">Kshs <?php echo $row['product_price'] ?></p>
+     <a class="button-1" href="">ADD TO CART</a>
+     <p class="description"> Description</p>
+     <p class="description1"><?php echo $row['product_description'] ?></p>
+     
 
     <!-- Add your page specific code here -->
     <footer>
         <div class="footer-list-1">
-            <a href="..\homepage\home.html" class="logo-text">TOYS</a>
+            <a href="..\homepage\home.php" class="logo-text">TOYS</a>
             <div class="footer-social-media-links">
                 <a href="https://www.facebook.com/"><img class="icon-facebook" src="..\..\assets\icons\facebook.png" alt="facebook"></a>
                 <a href="https://www.instagram.com/"><img class="icon-instagram" src="..\..\assets\icons\instagram.png" alt="instagram"></a>
@@ -115,5 +140,9 @@
  
 });
     </script>
+    <?php }
+
+ ?>
 </body>
+
 </html>

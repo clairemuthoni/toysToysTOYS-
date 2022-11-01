@@ -252,8 +252,7 @@ div.form{
     position: absolute;
     width: 600px;
     height: 500px;
-    left: 125px;
-    top: 293px;
+    top: 125px;
 }
 .button-1 {
     /* ---Change the button's position--- */
@@ -273,7 +272,7 @@ div.form{
     transition-duration: 0.2s;
 
     flex: none;
-order: 5;
+order: 7;
 flex-grow: 0;
 }
 
@@ -325,4 +324,12 @@ flex-grow: 0;
 order: 4;
 flex-grow: 0;
 }
+
+.radio {
+    color: #DF2935;
+    flex: none;
+    order: 5;
+    flex-grow: 0;
+}
+
 /* Add your CSS Here */
