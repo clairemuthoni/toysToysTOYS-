@@ -91,22 +91,40 @@
   <h2>Newest Arrival</h2>
   <br>
 
-  <?
-    $mysqli=new mysqli('Localhost','root','','mysql') or die($mysqli->connect_error);
-    $productImages='product_images';
+  <?php
+    $mysqli=new mysqli("localhost","root","") or die($mysqli->connect_error);//Establishing Connection with the Server
+    $db=mysqli_select_db("mysql",$Products);//select database
+    
+    $Products='products';
+    $result=$mysqli->query("SELECT * FROM $products") or die($mysqli->connect_error);
+    
+    
 
-    $result=$mysqli->query("SELECT * FROM $productImages") or die($mysqli->connect_error);
+    ?>
 
+
+
+
+  <div class="horizontal-list"> 
+    <?php
+
+    $query = $mysqli->query("SELECT * FROM products");
+    while ($row1 = mysqli_fetch_array($query)) {
+    <a href="..\product\product.html">
+    }
+       <div class="product-card">
+           echo "<img src='{$data['image_id']}'>";
+           <p class="product-name"<?php echo $row1['product_name']; ?></p>
+           <p class="supplier-name"><?php echo $row1['product_description']; ?></p>
+           <p class="product-price"><?php echo $row1['product_price']; ?></p>
+    
+  
   
 
-  <div class="horizontal-list">   
-    <a href="..\product\product.html">
-       <div class="product-card">
-           echo "<img src='{$data['image_url']}' width=10% height=40%>";
-           <p class="product-name">Roman Reigns Action Figure</p>
-           <p class="supplier-name">WWE Retailers</p>
-           <p class="product-price">Ksh 1750</p>
-       </div>
+  </div>
+  ?> 
+
+  /*
    </a>
        <a href="..\product\product.html">
        <div class="product-card">
@@ -184,18 +202,27 @@
  </a>
  
 </div>
-?>
+*/
+
 
   <h2>Most Purchased</h2>
 
   <div class="horizontal-list">   
-    <a href="..\product\product.html">
-       <div class="product-card">
-           <img src="..\..\assets\images\images\roman.jpg" alt="image">
-           <p class="product-name">Roman Reigns Action Figure</p>
-           <p class="supplier-name">WWE Retailers</p>
-           <p class="product-price">Ksh 1750</p>
-       </div>
+  <?php
+
+  $query = $mysqli->query("SELECT * FROM products);
+  while ($row1 = mysqli_fetch_array($query)) {
+  <a href="..\product\product.html">
+  }
+     <div class="product-card">
+         echo "<img src='{$data['image_id']}'>";
+         <p class="product-name"<?php echo $row1['product_name']; ?></p>
+         <p class="supplier-name"><?php echo $row1['product_description']; ?></p>
+         <p class="product-price"><?php echo $row1['product_price']; ?></p>
+  
+?> 
+
+/* Not Necessary
    </a>
        <a href="..\product\product.html">
        <div class="product-card">
@@ -273,6 +300,7 @@
  </a>
  
 </div>
+*/
 
 
   <footer>
