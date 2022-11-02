@@ -35,11 +35,29 @@
     </header>
         <div class="content">
         <h1 id ="Welcome">Welcome, Seller</h1>
-        <span id="orders"> Daily orders 27 </span>
-        
-        <span id="revenue"> Daily Revenue ksh 17345</span>
+        <?php
+      require("connection.php");
+      $sql = "SELECT sum(order_quantity) AS Total_Sales FROM `orderdetails`,products WHERE products.seller_id='{$_SESSION["seller_id"]}'";//products.seller_id='14'
+      $result=mysqli_query($conn, $sql);
+      while($row = mysqli_fetch_assoc($result))  
+{ 
+      ?>
+        <span id="orders"> Total Sales <?php echo $row['Total_Sales'];?></span>
+        <?php
+                }
+                ?>
 
-        <span id="weekly_revenue"> Weekly Revenue  ksh 73246</span><br>
+<?php
+      require("connection.php");
+      $sql = "SELECT sum(order_total) AS Total_Revenue FROM `orderdetails`, products WHERE products.seller_id='{$_SESSION["seller_id"]}'";//products.seller_id='14'
+      $result=mysqli_query($conn, $sql);
+      while($row = mysqli_fetch_assoc($result))  
+{ 
+      ?>
+        <span id="revenue"> Total Revenue ksh <?php echo $row['Total_Revenue'];?></span>
+        <?php
+                }
+                ?>
 
         <div class="Timeframe">
         <span id="t">Timeframe : </span>
@@ -54,15 +72,28 @@
           </div>
 
           </div>
+          <?php
+            require("connection.php");
+            $sql = "SELECT * FROM products, orderdetails where products.product_id=orderdetails.product_id AND products.seller_id='{$_SESSION["seller_id"]}'";//products.seller_id='14'
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+
 
           <table>
             <tr>
               <td><img src="..\..\assets\images\hummer.png" width="150" length="150"></td>
-              <td>HUMMER EV Toy Car<br> <p id="company"> Company</p></td>
-              <td>Ksh 2500 <br> Quantity sold : 20 </td>
+              <td><b>product <b><?php echo $row['product_name']; ?><br> <p id="company"> Company</p></td>
+              <td>Price ksh <?php echo $row['product price']; ?><br> Quantity <?php echo $row['order_quantity']; ?></td>
               <td><a href="add_product.html"><button id="add_prod">Add New Product</button></a><br><a href="seller_info.html"><button id="manage_acc">Manage my Account</button></a></td>
             </tr>
           </table>
+          <?php
+                }
+            }
+
+            ?>
           </div>
 
           <footer>
