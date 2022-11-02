@@ -107,214 +107,79 @@
   <h2>Newest Arrival</h2>
   <br>
 
+
   <div class="horizontal-list">   
-    <a href="..\product\product.php">
+    <?php
+    require("..\..\middlewares\connection.php");
+
+    $sql_cat = "SELECT * FROM `products` ORDER BY `product_id` DESC LIMIT 6";
+    $result_cat = mysqli_query($conn, $sql_cat);
+    $array_cat = mysqli_fetch_all($result_cat, MYSQLI_ASSOC);
+  
+    foreach($array_cat as $key => $value){
+        $sql = "SELECT `image_url` FROM product_images where `image_id` = ". $value['image_id'];
+        $result = mysqli_query($conn, $sql);
+        $images = mysqli_fetch_all($result);
+
+        if(!isset($value['seller_id'])){
+            $value['seller_id'] = 1;
+        }
+
+        $sql = "SELECT * FROM `sellers` WHERE `seller_id`=".$value['seller_id'];
+        $result = mysqli_query($conn, $sql);
+        $array = mysqli_fetch_assoc($result);
+
+    ?>
+    <a href="..\product\product.php?id=<?php echo $value['product_id'] ?>">
        <div class="product-card">
-           <img src="..\..\assets\images\images\roman.jpg" alt="image">
-           <p class="product-name">Roman Reigns Action Figure</p>
-           <p class="supplier-name">WWE Retailers</p>
-           <p class="product-price">Ksh 1750</p>
-       </div>
-   </a>
-       <a href="..\product\product.php">
-       <div class="product-card">
-        <img src="..\..\assets\images\images\gun.jpg" alt="image">
-        <p class="product-name">Burst Air Gun</p>
-           <p class="supplier-name">CSI Retailers</p>
-           <p class="product-price">Ksh 1200</p>
-       </div>
-   </a>
-   <a href="..\product\product.php">
-       <div class="product-card">
-        <img src="..\..\assets\images\images\truck.jpeg" alt="image">
-        <p class="product-name">Off-Road Truck</p>
-           <p class="supplier-name">Spark Retailers</p>
-           <p class="product-price">Ksh 1150</p>
-       </div>
-   </a>
-   <a href="..\product\product.php">
-       <div class="product-card">
-        <img src="..\..\assets\images\images\barbiedoll.jpg" alt="image">
-        <p class="product-name">Barbie Doll</p>
-           <p class="supplier-name">CoolKids Retailers</p>
-           <p class="product-price">Ksh 950</p>
-       </div>
-   </a>
-   <a href="..\product\product.php">
-       <div class="product-card">
-        <img src="..\..\assets\images\images\hotwheels.jpeg" alt="image">
-        <p class="product-name">Hot Wheels</p>
-           <p class="supplier-name">Spark Retailers</p>
-           <p class="product-price">Ksh 850</p>
+           <img src="..\..\assets\product-images\<?php echo $images[0][0] ?>" alt="image">
+           <p class="product-name"><?php echo $value['product_name']; ?></p>
+           <p class="supplier-name"><?php echo $array['company_name']; ?></p>
+           <p class="product-price"><?php echo $value['product_price']; ?></p>
        </div>
    </a>
 
-
-   <a href="..\product\product.php">
-     <div class="product-card">
-      <img src="..\..\assets\images\images\batman.jpeg" alt="image">
-      <p class="product-name">Batman Action Figure</p>
-         <p class="supplier-name">CoolKids Retailers</p>
-         <p class="product-price">Ksh 1850</p>
-     </div>
- </a>
- <a href="..\product\product.php">
-     <div class="product-card">
-      <img src="..\..\assets\images\images\firetruck.jpeg" alt="image">
-      <p class="product-name">Fire Truck</p>
-         <p class="supplier-name">Toyworld Retailers</p>
-         <p class="product-price">Ksh 3050</p>
-     </div>
- </a>
- <a href="..\product\product.php">
-     <div class="product-card">
-           <img src="..\..\assets\images\images\gijoe.jpg" alt="image">
-         <p class="product-name">GI JOE</p>
-         <p class="supplier-name">CoolKids Retailers</p>
-         <p class="product-price">Ksh 1750</p>
-     </div>
- </a>
- <a href="..\product\product.php">
-     <div class="product-card">
-      <img src="..\..\assets\images\images\tennis.jpg" alt="image">
-      <p class="product-name">Tennis Ball</p>
-         <p class="supplier-name">Spark Retailers</p>
-         <p class="product-price">Ksh 650</p>
-     </div>
- </a>
- <a href="..\product\product.php">
-     <div class="product-card">
-      <img src="..\..\assets\images\images\yoyo.jpg" alt="image">
-      <p class="product-name">Magic Yoyo</p>
-         <p class="supplier-name">Toyworld Retailers</p>
-         <p class="product-price">Ksh 900</p>
-     </div>
- </a>
- 
+   <?php
+    }
+   ?> 
 </div>
-
-  <!-- <div class="row">
-    <div class="column">
-      <h2>Legos</h2>
-      <img src="..\..\assets\images\car.jfif" alt="Car Legos">
-      <li>Lego Car</li>
-      <li>JUMIA</li>
-      <li>Ksh1000</li>
-
-      <br>
-      <button>BUY NOW!</button>
-    </div>
-
-    <div class="column">
-      <h2>Drones</h2>
-      <img src="..\..\assets\images\drone.jfif" alt="Drones">
-      <li>DJI DRONE</li>
-      <li>Alibaba</li>
-      <li>Ksh20000</li>
-      <br>
-      <button>BUY NOW!</button>
-    </div>
-
-    <div class="column">
-      <h2>Dolls</h2>
-      <img src="..\..\assets\images\doll.jfif" alt="Girl Doll">
-      <li>Barbie Doll</li>
-      <li>Ebay</li>
-      <li>Ksh1500</li>
-
-      <br>
-      <button>BUY NOW!</button>
-    </div>
-  </div>
-
-  <br> -->
 
   <h2>Most Purchased</h2>
 
   <div class="horizontal-list">   
-    <a href="..\product\product.php">
+  <?php
+    require("..\..\middlewares\connection.php");
+
+    $sql_cat = "SELECT * FROM `products` ORDER BY `product_id` ASC LIMIT 6";
+    $result_cat = mysqli_query($conn, $sql_cat);
+    $array_cat = mysqli_fetch_all($result_cat, MYSQLI_ASSOC);
+  
+    foreach($array_cat as $key => $value){
+        $sql = "SELECT `image_url` FROM product_images where `image_id` = ". $value['image_id'];
+        $result = mysqli_query($conn, $sql);
+        $images = mysqli_fetch_all($result);
+
+        if(!isset($value['seller_id'])){
+            $value['seller_id'] = 1;
+        }
+
+        $sql = "SELECT * FROM `sellers` WHERE `seller_id`=".$value['seller_id'];
+        $result = mysqli_query($conn, $sql);
+        $array = mysqli_fetch_assoc($result);
+
+    ?>
+    <a href="..\product\product.php?id=<?php echo $value['product_id'] ?>">
        <div class="product-card">
-           <img src="..\..\assets\images\images\roman.jpg" alt="image">
-           <p class="product-name">Roman Reigns Action Figure</p>
-           <p class="supplier-name">WWE Retailers</p>
-           <p class="product-price">Ksh 1750</p>
-       </div>
-   </a>
-       <a href="..\product\product.php">
-       <div class="product-card">
-        <img src="..\..\assets\images\images\gun.jpg" alt="image">
-        <p class="product-name">Burst Air Gun</p>
-           <p class="supplier-name">CSI Retailers</p>
-           <p class="product-price">Ksh 1200</p>
-       </div>
-   </a>
-   <a href="..\product\product.php">
-       <div class="product-card">
-        <img src="..\..\assets\images\images\truck.jpeg" alt="image">
-        <p class="product-name">Off-Road Truck</p>
-           <p class="supplier-name">Spark Retailers</p>
-           <p class="product-price">Ksh 1150</p>
-       </div>
-   </a>
-   <a href="..\product\product.php">
-       <div class="product-card">
-        <img src="..\..\assets\images\images\barbiedoll.jpg" alt="image">
-        <p class="product-name">Barbie Doll</p>
-           <p class="supplier-name">CoolKids Retailers</p>
-           <p class="product-price">Ksh 950</p>
-       </div>
-   </a>
-   <a href="..\product\product.php">
-       <div class="product-card">
-        <img src="..\..\assets\images\images\hotwheels.jpeg" alt="image">
-        <p class="product-name">Hot Wheels</p>
-           <p class="supplier-name">Spark Retailers</p>
-           <p class="product-price">Ksh 850</p>
+           <img src="..\..\assets\product-images\<?php echo $images[0][0] ?>" alt="image">
+           <p class="product-name"><?php echo $value['product_name']; ?></p>
+           <p class="supplier-name"><?php echo $array['company_name']; ?></p>
+           <p class="product-price"><?php echo $value['product_price']; ?></p>
        </div>
    </a>
 
-
-   <a href="..\product\product.php">
-     <div class="product-card">
-      <img src="..\..\assets\images\images\batman.jpeg" alt="image">
-      <p class="product-name">Batman Action Figure</p>
-         <p class="supplier-name">CoolKids Retailers</p>
-         <p class="product-price">Ksh 1850</p>
-     </div>
- </a>
- <a href="..\product\product.php">
-     <div class="product-card">
-      <img src="..\..\assets\images\images\firetruck.jpeg" alt="image">
-      <p class="product-name">Fire Truck</p>
-         <p class="supplier-name">Toyworld Retailers</p>
-         <p class="product-price">Ksh 3050</p>
-     </div>
- </a>
- <a href="..\product\product.php">
-     <div class="product-card">
-           <img src="..\..\assets\images\images\gijoe.jpg" alt="image">
-         <p class="product-name">GI JOE</p>
-         <p class="supplier-name">CoolKids Retailers</p>
-         <p class="product-price">Ksh 1750</p>
-     </div>
- </a>
- <a href="..\product\product.php">
-     <div class="product-card">
-      <img src="..\..\assets\images\images\tennis.jpg" alt="image">
-      <p class="product-name">Tennis Ball</p>
-         <p class="supplier-name">Spark Retailers</p>
-         <p class="product-price">Ksh 650</p>
-     </div>
- </a>
- <a href="..\product\product.php">
-     <div class="product-card">
-      <img src="..\..\assets\images\images\yoyo.jpg" alt="image">
-      <p class="product-name">Magic Yoyo</p>
-         <p class="supplier-name">Toyworld Retailers</p>
-         <p class="product-price">Ksh 900</p>
-     </div>
- </a>
- 
+   <?php
+    }
+   ?> 
 </div>
 
   <!-- <br>

@@ -47,37 +47,47 @@
 
     <div class="cart">
         <div class="products">
-            <?php
-            require("..\..\middlewares\connection.php");
-
-            $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
-            foreach ($cart as $key => $value) {
-                $sql = "SELECT `image_url` FROM product_images where `image_id` = ". $value['image_id'];
-                $result = mysqli_query($conn, $sql);
-                $images = mysqli_fetch_all($result);
-
-                $sql = "SELECT * FROM `sellers` WHERE `seller_id`=".$value['seller_id'];
-                $result = mysqli_query($conn, $sql);
-                $array = mysqli_fetch_assoc($result);
-                # code...
-            ?>
             <div class="product">
-                <img class="product-image" src="..\..\assets\product-images\<?php echo $images[0][0] ?>" alt="image">
-                <div class="product-info">
-                    <h3 class="product-name"><?php echo $value['product_name']; ?></h3>
-                    <h3 class="product-supplier"><?php echo $array['company_name']; ?></h3>
-                    <h2 class="product-price"><?php echo $value['product_price']; ?></h2>
-                    <p class="product-quantity">Quantity:<input value="1" name=""></p>
-                    <p class="product-remove">
-                        <img class="" src="delete.png" alt="">
-
-                    </p>
+                           <?php if (empty($products)): ?>
+              
+                <?php else: ?>
+                <?php foreach ($_SESSION['cart'] as $key => $value): ?>
+                <tr>
+                    <td class="img">
+                        <a href="index.php?page=product&id=<?=$product['id']?>">
+                            <img src="imgs/<?=$product['img']?>" width="50" height="50" alt="<?=$product['name']?>">
+                        </a>
+                    </td>
+                    <td>
+                        
+                        <br>
+                        
+                    </td>
+                    <td class="price">Ksh <?=$Products['product_price']?></td>
+                    <td class="quantity">
+                        <input type="number" name="quantity-<?=$product['product_id']?>" value="<?=$Products[$product['id']]?>" min="1" max="<?=$product['quantity']?>" placeholder="Quantity" required>
+                    </td>
+                    <td class="price">Kshs <?=$product['price'] * $products_in_cart[$product['id']]?></td>
+                </tr>
+                <?php endforeach; ?>
+                <?php endif; ?>
+                <?php $products_in_cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+$products = array();
+$subtotal = 0.00;
+// If there are products in cart
+if ($products_in_cart) {
+    
+    }
+?> 
+            </tbody>
+       
+        
+        </div>
+        
+    </form>
+</div>
                 </div>
             </div>
-            <?php
-            }
-            ?>
-            
         </div>
         <div class="cart-total">
             <p>
@@ -85,16 +95,17 @@
 
             </p>
             <p>
-                <span>Total:</span>
-                <span>Ksh 5000</span>
+               <div class="subtotal">
+            <span class="text">Subtotal</span>
+            <span class="price">Kshs <?=$subtotal?></span>
             </p>
 
             <div>
-                <a class="button-1" href="..\checkout\secheckout.php">Proceed to checkout</a>
+                <a class="button-1" href="secheckot.php">Proceed to checkout</a>
             </div>
             <div>
                 <br>
-                <a class="button-1" href="..\products_list\product_list.php">Continue Shopping</a>
+                <a class="button-1" href="product_list.php">Continue Shopping</a>
             </div>
         </div>
     </div>

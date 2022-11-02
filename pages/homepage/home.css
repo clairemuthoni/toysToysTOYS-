@@ -524,7 +524,7 @@ h2 {
   display: flex;
   min-height: 320px;
   border:0px solid #ddd;
-  min-width:1400px;
+  min-width:1200px;
   scrollbar-color: #df2935;
 }
 body::-webkit-scrollbar-track {

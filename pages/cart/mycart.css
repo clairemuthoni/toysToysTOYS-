@@ -164,7 +164,7 @@ footer {
 
     /* To move the footer lower than where it is now, change it from bottom to top and then put in a large value like 1000px*/
     /*bottom: 0px;*/
-     top: 1000px; 
+     top: 1500px; 
 
     color: #DF2935;
 }
@@ -276,15 +276,11 @@ footer {
     border: 1px solid silver;
     margin-bottom: 20px;
 }
-.product:hover{
-    /* border: none; */
-    /* box-shadow:2px 2px 4px rgba(0,0,0,0.2) ; */
-    /*transform: scale(1.01);*/
-}
+
 .product >img{
-    width: 300px;
+    width: 250px;
     height: 200px;
-    object-fit: cover;
+    object-fit:cover;
 }
 .product >img{
     transform: scale(1.04);
@@ -405,4 +401,8 @@ footer {
     border: 1px solid #DF2935;
     box-shadow: 1px 1px 8px #DF2935;
     text-shadow: 0px 0px 0px;
+}
+
+.product-image {
+    width: 250px;
 }

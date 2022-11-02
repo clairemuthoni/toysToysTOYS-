@@ -36,8 +36,9 @@
         <div class="content">
         <h1 id ="Welcome">Welcome, Seller</h1>
         <?php
-      require("connection.php");
-      $sql = "SELECT sum(order_quantity) AS Total_Sales FROM `orderdetails`,products WHERE products.seller_id='{$_SESSION["seller_id"]}'";//products.seller_id='14'
+      require("..\..\middlewares\connection.php");
+      require("..\..\middlewares\seller_guard.php");
+      $sql = "SELECT sum(order_quantity) AS Total_Sales FROM `orderdetails`,products WHERE products.seller_id='{$seller_id}'";//products.seller_id='14'
       $result=mysqli_query($conn, $sql);
       while($row = mysqli_fetch_assoc($result))  
 { 
@@ -48,8 +49,7 @@
                 ?>
 
 <?php
-      require("connection.php");
-      $sql = "SELECT sum(order_total) AS Total_Revenue FROM `orderdetails`, products WHERE products.seller_id='{$_SESSION["seller_id"]}'";//products.seller_id='14'
+      $sql = "SELECT sum(order_total) AS Total_Revenue FROM `orderdetails`, products WHERE products.seller_id='{$seller_id}'";//products.seller_id='14'
       $result=mysqli_query($conn, $sql);
       while($row = mysqli_fetch_assoc($result))  
 { 
@@ -73,8 +73,7 @@
 
           </div>
           <?php
-            require("connection.php");
-            $sql = "SELECT * FROM products, orderdetails where products.product_id=orderdetails.product_id AND products.seller_id='{$_SESSION["seller_id"]}'";//products.seller_id='14'
+            $sql = "SELECT * FROM products, orderdetails where products.product_id=orderdetails.product_id AND products.seller_id='{$seller_id}'";//products.seller_id='14'
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
