@@ -1,3 +1,64 @@
+<?php
+    session_start();
+    require("..\..\middlewares\connection.php");
+    require("..\..\middlewares\user_guard.php");
+
+    $sql = 'SELECT `products`.`product_id`,  `products`.`category_id`,  `products`.`product_name`,  `products`.`product_description`,  `products`.`image_id`,  `products`.`product_price`,  `products`.`available_quantity`,  `products`.`created_at`,  `products`.`updated_at`,  `products`.`seller_id`, `orderdetails`.`order_quantity`, `orderdetails`.`orderdetails_id` FROM ((`orders` 
+    INNER JOIN `orderdetails` ON `orders`.`order_id`=`orderdetails`.`order_id`)
+   INNER JOIN `products` ON `products`.`product_id`=`orderdetails`.`product_id`) WHERE `orders`.`order_status`= "Pending" AND `orders`.`user_id`='.$user_id;
+        $result = mysqli_query($conn, $sql);
+         $cart = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    if (isset($_GET["add"])){
+        $id = $_GET["add"];
+        $quantity = 0;
+
+        $sql = "SELECT * FROM `orderdetails` WHERE `orderdetails_id`=$id";
+        $result = mysqli_query($conn, $sql);
+        $item = mysqli_fetch_assoc($result);
+    
+        $quantity = $item["order_quantity"];
+        $quantity += 1;
+        echo $quantity;
+        
+        $sql_add = "UPDATE `orderdetails` SET `order_quantity` = '$quantity' WHERE `orderdetails`.`orderdetails_id` = $id";
+        mysqli_query($conn, $sql_add);
+        header("Location: cart.php");
+        exit();
+    }
+
+    if (isset($_GET["subtract"])){
+        $id = $_GET["subtract"];
+        $quantity = 0;
+
+        $sql = "SELECT * FROM `orderdetails` WHERE `orderdetails_id`=$id";
+        $result = mysqli_query($conn, $sql);
+        $item = mysqli_fetch_assoc($result);
+    
+        $quantity = $item["order_quantity"];
+
+        if ($quantity > 1){
+            $quantity -= 1;
+        }
+        else{
+            header("Location: cart.php");
+            exit();
+            return;
+        }
+        $sql_add = "UPDATE `orderdetails` SET `order_quantity` = '$quantity' WHERE `orderdetails`.`orderdetails_id` = $id";
+        mysqli_query($conn, $sql_add);
+        header("Location: cart.php");
+        exit();
+    }
+    if (isset($_GET["remove"])){
+        $id = $_GET["remove"];
+        $sql_delete = "DELETE FROM `orderdetails` WHERE `orderdetails`.`orderdetails_id` = $id";
+        mysqli_query($conn, $sql_delete);
+        header("Location: cart.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +87,6 @@
                     <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
                     <p>
                         <?php
-                        session_start();
                         if (isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
                             echo "Hi, " . $_SESSION['first_name'];
                         } else {
@@ -48,9 +108,7 @@
     <div class="cart">
         <div class="products">
             <?php
-            require("..\..\middlewares\connection.php");
-
-            $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+            // $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
             foreach ($cart as $key => $value) {
                 $sql = "SELECT `image_url` FROM product_images where `image_id` = ". $value['image_id'];
                 $result = mysqli_query($conn, $sql);
@@ -64,14 +122,20 @@
             <div class="product">
                 <img class="product-image" src="..\..\assets\product-images\<?php echo $images[0][0] ?>" alt="image">
                 <div class="product-info">
-                    <h3 class="product-name"><?php echo $value['product_name']; ?></h3>
-                    <h3 class="product-supplier"><?php echo $array['company_name']; ?></h3>
-                    <h2 class="product-price"><?php echo $value['product_price']; ?></h2>
-                    <p class="product-quantity">Quantity:<input value="1" name=""></p>
-                    <p class="product-remove">
-                        <img class="" src="delete.png" alt="">
+                    <div>
+                        <h3 class="product-name"><?php echo $value['product_name']; ?></h3>
+                        <h3 class="product-supplier"><?php echo $array['company_name']; ?></h3>
+                    </div>
+                    <div class="product-price-quantity">
 
-                    </p>
+                        <h2 class="product-price">Ksh. <?php echo $value['product_price']; ?></h2>
+                        
+                        <p class='product-quantity-label'>Quantity</p>
+                        <a class='product-add' href='cart.php?add="<?php echo $value['orderdetails_id']; ?>"'><b class="icon-font-size">+</b></a>
+                        <p class='product-quantity'><?php echo $value['order_quantity']; ?></p>
+                        <a class='product-subtract' href='cart.php?subtract="<?php echo $value['orderdetails_id']; ?>"'><p class="icon-font-size">-</p></a>
+                        <a class="product-remove" href='cart.php?remove="<?php echo $value['orderdetails_id']; ?>"'><p>Remove</p></a>
+                    </div>
                 </div>
             </div>
             <?php
@@ -86,7 +150,15 @@
             </p>
             <p>
                 <span>Total:</span>
-                <span>Ksh 5000</span>
+                <?php
+                $total = 0;
+                foreach ($cart as $key => $value) {
+                    # code...
+                    $total += $value['product_price'] * $value['order_quantity'];
+
+                }
+                ?>
+                <span>Ksh <?php echo $total; ?></span>
             </p>
 
             <div>

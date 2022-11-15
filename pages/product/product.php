@@ -41,6 +41,7 @@
 
   <?php
   require('..\..\middlewares\connection.php');
+  require('..\..\middlewares\user_guard.php');
   $id = $_GET['id'];
 
   $sql = " SELECT * FROM products WHERE product_id = $id";
@@ -61,17 +62,69 @@
     $result = mysqli_query($conn, $sql);
     $seller = mysqli_fetch_assoc($result);
 
-    if(isset($_GET['cart'])){
-      $id = $_GET['id'];
+    // if(isset($_GET['cart'])){
+    //   $id = $_GET['id'];
 
-      $sql = " SELECT * FROM products WHERE product_id = $id";
+    //   $sql = " SELECT * FROM products WHERE product_id = $id";
+    //   $result = mysqli_query($conn, $sql);
+    //   $row = mysqli_fetch_assoc($result);
+
+    //   $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+    //   array_push($cart, $row);
+    //   $_SESSION['cart'] = $cart;
+    // }
+
+    function OrderID($conn){            // Check if there are any pending orders, else make a new order id
+
+      if (isset($_SESSION["order_id"])){
+          return $_SESSION["order_id"];
+      }
+      $query = "SELECT `order_id` FROM `orders` WHERE `order_status` = 'Pending' AND `user_id` = ".$_SESSION["user_id"].";";
+      $result = mysqli_query($conn, $query);
+      $row = mysqli_fetch_row($result);
+      if ($row[0]){
+          $_SESSION["order_id"] = $row[0];
+          return $row[0];
+      }
+      else{   // Make a new entry in the tbl_order table
+
+          $order_sql = "INSERT INTO `orders` (`order_id`, `user_id`, `order_status`, `order_price`, `updated_at`, `is_deleted`)
+           VALUES (NULL, '".$_SESSION["user_id"]."', 'Pending', '0', '".date('Y-m-d H:i:s')."', '0')";
+          mysqli_query($conn, $order_sql);
+          $_SESSION["order_id"] = CheckOrderID($conn);
+          return $_SESSION["order_id"];
+      }
+  }
+
+  function CheckOrderID($conn){
+    $query = "SELECT MAX(order_id) FROM orders;";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_row($result);
+    // $user_id = ($row[0] + 1);
+    return ($row[0]);
+}
+
+    if (isset($_GET["cart"])){
+      $id = $_GET["cart"];
+      $sql = "SELECT * FROM products WHERE product_id = $id";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
 
-      $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
-      array_push($cart, $row);
-      $_SESSION['cart'] = $cart;
-    }
+      $order_id = OrderID($conn);
+      $customer_id = $user_id;
+      $product_price = $row["product_price"];
+
+      $orderdetails_sql = "INSERT INTO `orderdetails` (`orderdetails_id`, `order_id`, `product_id`, `product price`, `order_quantity`, `created_at`, `updated_at`)
+       VALUES (NULL, '$order_id', '$id', '$product_price', '1', '".date('Y-m-d H:i:s')."', '".date('Y-m-d H:i:s')."') ";
+      
+      mysqli_query($conn, $orderdetails_sql);
+      $order_sql = "UPDATE `orders` SET `updated_at` = '".date('Y-m-d H:i:s')."' WHERE `order_id` = $order_id;";
+      mysqli_query($conn, $order_sql);
+      header("Location:".$_SERVER["HTTP_REFERER"]);
+      exit();
+      
+
+  }
 
   ?>
 
