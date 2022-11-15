@@ -41,7 +41,6 @@
 
   <?php
   require('..\..\middlewares\connection.php');
-  require('..\..\middlewares\user_guard.php');
   $id = $_GET['id'];
 
   $sql = " SELECT * FROM products WHERE product_id = $id";
@@ -97,7 +96,7 @@
   }
 
   function CheckOrderID($conn){
-    $query = "SELECT MAX(order_id) FROM orders;";
+    $query = "SELECT MAX(order_id) FROM orders WHERE user_id=".$_SESSION['user_id'];
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_row($result);
     // $user_id = ($row[0] + 1);
@@ -105,6 +104,9 @@
 }
 
     if (isset($_GET["cart"])){
+      //  Check if user is logged in first
+      require('..\..\middlewares\user_guard.php');
+
       $id = $_GET["cart"];
       $sql = "SELECT * FROM products WHERE product_id = $id";
       $result = mysqli_query($conn, $sql);

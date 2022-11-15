@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     }
     // Check if the Logged in user is a seller
 
-    $sql="SELECT * FROM sellers WHERE user_id='".$_SESSION["user_id"];
+    $sql="SELECT * FROM sellers WHERE user_id=".$_SESSION["user_id"];
 
 	$result=mysqli_query($conn,$sql);
 	$row=mysqli_fetch_array($result);

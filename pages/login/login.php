@@ -1,3 +1,25 @@
+<?php
+session_start();
+require("..\..\middlewares\connection.php");
+
+if (isset($_SESSION["user_id"])) {
+
+    if ($_SESSION["role_id"] == 1) {            //Admin
+        header("Location: ..\admin_page\admin.php");
+        exit;
+    } else if (isset($_SESSION["seller_id"])) {     //Seller
+        header("Location: ..\seller_account\seller_account.php");
+        exit;
+    }
+    else{
+        header("Location:".$_SERVER["HTTP_REFERER"]);
+        exit;
+    }
+    
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,23 +34,35 @@
 <body>
     <!-- The Header for the Webpage -->
     <header>
-        <a href="..\homepage\home.php" class="logo-text">TOYS</a>
-        <div class="nav-search-bar">
-            <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search"
-                id="search">
-            <a href=""><img class="nav-search-button" src="..\..\assets\icons\search-filled.png" alt="search"></a>
+    <a href="..\homepage\home.php" class="logo-text">TOYS</a>
+    <div class="nav-search-bar">
+      <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search"
+        id="search">
+      <a href=""><img class="nav-search-button" src="..\..\assets\icons\search-filled.png">
+
+
+    </div>
+    <div class="nav-buttons">
+      <a href=""><img class="nav-link help-icon" src="..\..\assets\icons\help.png" alt="help"></a>
+      <a href="..\login\login.php">
+        <div class="nav-account">
+          <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
+          <p>
+            <?php
+
+              if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+                echo "Hi, ".$_SESSION['first_name'];
+             }
+             else {
+              echo "Login";
+             }
+            ?>
+          </p>
         </div>
-        <div class="nav-buttons">
-            <a href=""><img class="nav-link help-icon" src="..\..\assets\icons\help.png" alt="help"></a>
-            <a href="">
-                <div class="nav-account">
-                    <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
-                    <p>Hi, User</p>
-                </div>
-            </a>
-            <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
-        </div>
-    </header>
+      </a>
+      <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+    </div>
+  </header>
 
 
 
