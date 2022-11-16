@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+require("..\..\middlewares\seller_guard.php");
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +24,6 @@
                       <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
                       <p>
                         <?php
-                        session_start();
                           if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
                             echo "Hi, ".$_SESSION['first_name'];
                          }

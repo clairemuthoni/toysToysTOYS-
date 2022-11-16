@@ -1,3 +1,39 @@
+<?php
+
+session_start();
+require("..\..\middlewares\connection.php");
+require("..\..\middlewares\seller_guard.php");
+
+$sql = "SELECT `products`.`product_name`, `products`.`product_price`, `products`.`image_id`, `products`.`seller_id`,
+SUM(`orderdetails`.`order_quantity`) AS total_sales, 
+SUM(`orderdetails`.`order_quantity`)*`products`.`product_price` AS total_amount 
+FROM ((`products` 
+       INNER JOIN `orderdetails` ON `products`.`seller_id`=$seller_id AND `products`.`product_id` = `orderdetails`.`product_id`)
+       INNER JOIN `orders` ON `orderdetails`.`order_id` = `orders`.`order_id` AND `orders`.`order_status`='Pending');";
+$result = mysqli_query($conn, $sql);
+$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+$date_today = date('Y-m-d');
+$sql = "SELECT IFNULL(SUM(`orderdetails`.`order_quantity`), 0) AS daily_orders, 
+IFNULL(SUM(`orderdetails`.`order_quantity`)*`products`.`product_price`, 0) AS daily_revenue 
+FROM ((`products` 
+       INNER JOIN `orderdetails` ON `products`.`seller_id`=$seller_id AND `products`.`product_id` = `orderdetails`.`product_id`)
+       INNER JOIN `orders` ON `orderdetails`.`order_id` = `orders`.`order_id` AND `orders`.`order_status`='Pending' AND `orders`.`updated_at` >= '$date_today');";
+$result = mysqli_query($conn, $sql);
+$summary = mysqli_fetch_assoc($result);
+
+$date_2 = date_create();;
+date_sub($date_2, date_interval_create_from_date_string("7 days"));
+$date_this_week = $date_2->format('Y-m-d');
+$sql = "SELECT IFNULL(SUM(`orderdetails`.`order_quantity`), 0) AS daily_orders, 
+IFNULL(SUM(`orderdetails`.`order_quantity`)*`products`.`product_price`, 0) AS weekly_revenue 
+FROM ((`products` 
+       INNER JOIN `orderdetails` ON `products`.`seller_id`=$seller_id AND `products`.`product_id` = `orderdetails`.`product_id`)
+       INNER JOIN `orders` ON `orderdetails`.`order_id` = `orders`.`order_id` AND `orders`.`order_status`='Pending' AND `orders`.`updated_at` >= '$date_this_week');";
+$result = mysqli_query($conn, $sql);
+$summary1 = mysqli_fetch_assoc($result);
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +42,7 @@
     </head>
 
     <body>
-      <header>
+    <header>
         <a href="..\homepage\home.php" class="logo-text">TOYS</a>
         <div class="nav-search-bar">
             <input class="nav-search-text-field" type="text" placeholder="What are you looking for?" name="user_search" id="search">
@@ -16,54 +52,42 @@
             <a href=""><img class="nav-link help-icon" src="..\..\assets\icons\help.png" alt="help"></a>
             <a href="..\login\login.php">
                 <div class="nav-account">
-                  <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
-                  <p>
-                    <?php
-                    session_start();
-                      if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
-                        echo "Hi, ".$_SESSION['first_name'];
-                     }
-                     else {
-                      echo "Login";
-                     }
-                    ?>
-                  </p>
+                    <img class="nav-link " src="..\..\assets\icons\user.png" alt="account">
+                    <p>
+                        <?php
+                        if (isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+                            echo "Hi, " . $_SESSION['first_name'];
+                        } else {
+                            echo "Login";
+                        }
+                        ?>
+                    </p>
                 </div>
-              </a>
-        <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
+            </a>
+            <a href="..\cart\cart.php"><img class="nav-link cart" src="..\..\assets\icons\cart.png" alt="cart"></a>
         </div>
     </header>
         <div class="content">
-        <h1 id ="Welcome">Welcome, Seller</h1>
+        <h1 id ="Welcome">Welcome, <?php echo $_SESSION['company_name']; ?></h1>
         <?php
-      require("..\..\middlewares\connection.php");
-      require("..\..\middlewares\seller_guard.php");
-      $sql = "SELECT sum(order_quantity) AS Total_Sales FROM `orderdetails`,products WHERE products.seller_id='{$seller_id}'";//products.seller_id='14'
-      $result=mysqli_query($conn, $sql);
-      while($row = mysqli_fetch_assoc($result))  
-{ 
-      ?>
-        <span id="orders"> Total Sales <?php echo $row['Total_Sales'];?></span>
-        <?php
-                }
-                ?>
 
-<?php
-      $sql = "SELECT sum(order_total) AS Total_Revenue FROM `orderdetails`, products WHERE products.seller_id='{$seller_id}'";//products.seller_id='14'
-      $result=mysqli_query($conn, $sql);
-      while($row = mysqli_fetch_assoc($result))  
-{ 
-      ?>
-        <span id="revenue"> Total Revenue ksh <?php echo $row['Total_Revenue'];?></span>
-        <?php
-                }
-                ?>
+        ?>
+        <span id="orders"> Daily orders: <?php echo $summary['daily_orders']; ?> </span>
+
+        <span id="revenue"> Daily Revenue: Ksh. <?php echo $summary['daily_orders']; ?></span>
+
+        <span id="weekly_revenue"> Weekly Revenue: Ksh. <?php echo $summary1['weekly_revenue']; ?></span><br>
+
+        <a id="add_prod" class="button-1" href="..\add_product\add_product.php">Add New Product</a>
+                <br>
+                <br>
+                <a id="manage_acc" class="button-1" href="seller_info.html">Manage my Account</a>
 
         <div class="Timeframe">
         <span id="t">Timeframe : </span>
-      
+
         <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Today</button>
+        <button onclick="myFunction()" class="dropbtn">Lifetime</button>
          <div id="myDropdown" class="dropdown-content">
           <a href="#">This week </a>
           <a href="#">This Month </a>
@@ -72,32 +96,42 @@
           </div>
 
           </div>
-          <?php
-            $sql = "SELECT * FROM products, orderdetails where products.product_id=orderdetails.product_id AND products.seller_id='{$seller_id}'";//products.seller_id='14'
-            $result = mysqli_query($conn, $sql);
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-            ?>
-
 
           <table>
-            <tr>
-              <td><img src="..\..\assets\images\hummer.png" width="150" length="150"></td>
-              <td><b>product <b><?php echo $row['product_name']; ?><br> <p id="company"> Company</p></td>
-              <td>Price ksh <?php echo $row['product price']; ?><br> Quantity <?php echo $row['order_quantity']; ?></td>
-              <td><a href="add_product.html"><button id="add_prod">Add New Product</button></a><br><a href="seller_info.html"><button id="manage_acc">Manage my Account</button></a></td>
-            </tr>
-          </table>
-          <?php
+            <?php
+            foreach ($products as $key => $value) {
+                # code...
+                if (is_null($value['product_name'])) {
+                    return;
                 }
-            }
+                $sql = "SELECT `image_url` FROM product_images where `image_id` = ". $value['image_id'];
+                $result = mysqli_query($conn, $sql);
+                $images = mysqli_fetch_all($result);
 
+                $sql = "SELECT * FROM `sellers` WHERE `seller_id`=".$value['seller_id'];
+                $result = mysqli_query($conn, $sql);
+                $array = mysqli_fetch_assoc($result);
             ?>
+            <tr>
+              <td><img src="..\..\assets\product-images\<?php echo $images[0][0] ?>" width="150" length="150"></td>
+              <td><p><?php echo $value['product_name']; ?></p>
+                <!-- <br> -->
+                <p id="company"> <?php echo $_SESSION['company_name']; ?></p>
+            </td>
+            <td><p>Total Revenue: Ksh. <?php echo $value['total_amount']; ?></p>
+                <p>Quantity sold : <?php echo $value['total_sales']; ?></p>
+            </td>
+            </tr>
+            <?php
+            }
+            ?>
+          </table>
+
           </div>
 
           <footer>
             <div class="footer-list-1">
-                <a href="..\homepage\home.php" class="logo-text">TOYS</a>
+                <a href="" class="logo-text">TOYS</a>
                 <div class="footer-social-media-links">
                     <a href="https://www.facebook.com/"><img class="icon-facebook" src="..\..\assets\icons\facebook.png" alt="facebook"></a>
                     <a href="https://www.instagram.com/"><img class="icon-instagram" src="..\..\assets\icons\instagram.png" alt="instagram"></a>
@@ -105,7 +139,7 @@
                 </div>
                 <p class="footer-copyright">©2022. Toys</p>
             </div>
-    
+
             <div class="footer-list-2">
                 <p class="footer-title">INFO</p>
                 <a href="">ABOUT US</a>
@@ -113,7 +147,7 @@
                 <a href="">WORK WITH US</a>
                 <a href="">PRIVACY POLICY</a>
             </div>
-    
+
             <div class="footer-list-3">
                 <p class="footer-title">CUSTOMER CARE</p>
                 <a href="">SHIPPING</a>

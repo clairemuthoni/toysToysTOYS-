@@ -94,7 +94,7 @@
 
             <div id="buttons">
                 <input class="button-1" id="save" type="submit" value="Save info"><br>
-                <a href="payment_info.html"><button class="button-1" id="Payment">Payment Info</button></a>
+                <a class="button-1" href="..\account_card_info\buyeraccount.php" id="Payment">Payment Info</a>
 
                 <?php
                 }

@@ -12,7 +12,7 @@ if (isset($_SESSION["user_id"])) {
         exit;
     }
     else{
-        header("Location:".$_SERVER["HTTP_REFERER"]);
+        header("Location: ..\buyer_info\buyer_info.php");
         exit;
     }
     
