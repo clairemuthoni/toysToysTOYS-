@@ -153,7 +153,7 @@ footer {
 
   /* To move the footer lower than where it is now, change it from bottom to top and then put in a large value like 1000px*/
   /*bottom: 0px;*/
-  top: 1650px;
+  top: 1950px;
 
   color: #df2935;
 }

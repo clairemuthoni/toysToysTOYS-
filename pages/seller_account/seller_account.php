@@ -4,6 +4,8 @@ session_start();
 require("..\..\middlewares\connection.php");
 require("..\..\middlewares\seller_guard.php");
 
+// $seller_id = 2;
+
 $sql = "SELECT `products`.`product_name`, `products`.`product_price`, `products`.`image_id`, `products`.`seller_id`,
 SUM(`orderdetails`.`order_quantity`) AS total_sales, 
 SUM(`orderdetails`.`order_quantity`)*`products`.`product_price` AS total_amount 

@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+require("..\..\middlewares\connection.php");
 require("..\..\middlewares\seller_guard.php");
 
 ?>
@@ -62,7 +63,6 @@ require("..\..\middlewares\seller_guard.php");
             <!-- <input class="textfield" type="type" name="Category"> -->
             <select class="textfield tf-align" type="text" name="Category" id="category" placeholder="Category">
             <?php
-                require("..\..\middlewares\connection.php");
 
                 $sql_cat = "SELECT * FROM `categories`";
                 $result_cat = mysqli_query($conn, $sql_cat);

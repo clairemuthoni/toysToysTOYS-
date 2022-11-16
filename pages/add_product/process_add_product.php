@@ -1,6 +1,7 @@
 <?php
 require("..\..\middlewares\connection.php");
-require("..\..\middlewares\seller_guard.php");
+
+$seller_id = 1;
 
 $pname = $_POST['pname'];
 $Description = $_POST['Description'];

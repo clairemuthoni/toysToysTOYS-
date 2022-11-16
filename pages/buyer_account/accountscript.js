@@ -9,6 +9,8 @@ const label = document.getElementById('lname')
 fname.addEventListener('click', username );
 
 function username(){
-    label.innerHTML ='<input type="text" name="uname">';
-    e.preventDefault();
+    (e) => {
+        label.innerHTML ='<input type="text" name="uname">';
+        e.preventDefault();
+    }
 }
