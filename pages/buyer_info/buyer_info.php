@@ -49,7 +49,7 @@
         ?>
     </span>
 
-    <form action="buyer_info2.php" method="POST">
+    <form action="buyer_info.php" method="POST">
 
     <?php
             require("..\..\middlewares\connection.php");

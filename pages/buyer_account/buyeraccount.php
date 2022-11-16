@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="buyeraccount.css">
     <title>Toys</title>
+    <script defer src="accountscript.js"></script>
 </head>
 
 <body>
@@ -38,31 +37,28 @@
         </div>
     </header>
     <img id="profile" src="..\..\assets\images\facebook_no_profile_pic2-jpg.gif" width="300" height="450">
-    <form action="buyer_info.html" method="GET">
-
+    <form id="myform" action="..\buyer_info\buyer_info.php" method="GET">
+    
         <div id="content">
             <h1><b>Personal info</b></h1>
-            <label for="uname">Username</label><br>
-            <!--
-                <input type="text" placeholder="Username" name="uname">-->
-            <!-- Get a photo of an pen -->
-            <!--<img src=""    ><br>-->
+            <label id="lname" for="uname"><?php echo $_SESSION["email"]; ?></label>
+            <button id="buname"><img src="..\..\assets\images\edit.jpg" height="10px" width="10px"></button>
 
             <h1><b>Password</b></h1>
             <span>Create a password or modify your existing one.</span><br>
-            <label for="emails">**********************</label><br>
+            <label for="emails">**********************</label>
+            <button id="email" onclick="username()"><img src="..\..\assets\images\edit.jpg" height="10px" width="10px"></button>
             <!--
                   <input type="email" name="emails">-->
-            <!-- Get a photo of an pen -->
-            <!--<img src=""    ><br>-->
+    
 
             <h1>Secret questions</h1>
             <span>Give yourself another secure way<br> to recover your account.</span>
             <label for="pnumber">.</label><br>
+            <button id="pnumber" onclick="username()"><img src="..\..\assets\images\edit.jpg" height="10px" width="10px"></button>
             <!--
                 <input type="number" name="pnumber">-->
-            <!-- Get a photo of an pen -->
-            <!--<img src=""    ><br>-->
+        
 
             <div id="buttons">
                 <input class="button-1" id="save" type="submit" value="Save info"><br>
