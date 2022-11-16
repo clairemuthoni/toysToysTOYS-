@@ -11,7 +11,7 @@ SUM(`orderdetails`.`order_quantity`) AS total_sales,
 SUM(`orderdetails`.`order_quantity`)*`products`.`product_price` AS total_amount 
 FROM ((`products` 
        INNER JOIN `orderdetails` ON `products`.`seller_id`=$seller_id AND `products`.`product_id` = `orderdetails`.`product_id`)
-       INNER JOIN `orders` ON `orderdetails`.`order_id` = `orders`.`order_id` AND `orders`.`order_status`='Pending');";
+       INNER JOIN `orders` ON `orderdetails`.`order_id` = `orders`.`order_id` AND `orders`.`order_status`!='Pending');";
 $result = mysqli_query($conn, $sql);
 $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -20,7 +20,7 @@ $sql = "SELECT IFNULL(SUM(`orderdetails`.`order_quantity`), 0) AS daily_orders,
 IFNULL(SUM(`orderdetails`.`order_quantity`)*`products`.`product_price`, 0) AS daily_revenue 
 FROM ((`products` 
        INNER JOIN `orderdetails` ON `products`.`seller_id`=$seller_id AND `products`.`product_id` = `orderdetails`.`product_id`)
-       INNER JOIN `orders` ON `orderdetails`.`order_id` = `orders`.`order_id` AND `orders`.`order_status`='Pending' AND `orders`.`updated_at` >= '$date_today');";
+       INNER JOIN `orders` ON `orderdetails`.`order_id` = `orders`.`order_id` AND `orders`.`order_status`!='Pending' AND `orders`.`updated_at` >= '$date_today');";
 $result = mysqli_query($conn, $sql);
 $summary = mysqli_fetch_assoc($result);
 
@@ -31,7 +31,7 @@ $sql = "SELECT IFNULL(SUM(`orderdetails`.`order_quantity`), 0) AS daily_orders,
 IFNULL(SUM(`orderdetails`.`order_quantity`)*`products`.`product_price`, 0) AS weekly_revenue 
 FROM ((`products` 
        INNER JOIN `orderdetails` ON `products`.`seller_id`=$seller_id AND `products`.`product_id` = `orderdetails`.`product_id`)
-       INNER JOIN `orders` ON `orderdetails`.`order_id` = `orders`.`order_id` AND `orders`.`order_status`='Pending' AND `orders`.`updated_at` >= '$date_this_week');";
+       INNER JOIN `orders` ON `orderdetails`.`order_id` = `orders`.`order_id` AND `orders`.`order_status`!='Pending' AND `orders`.`updated_at` >= '$date_this_week');";
 $result = mysqli_query($conn, $sql);
 $summary1 = mysqli_fetch_assoc($result);
 
